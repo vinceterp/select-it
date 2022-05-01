@@ -1,20 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { Input } from './src/components/atoms';
+import { Login } from './src/components/organisms/Login';
+import { styles } from './src/styles/styles';
 
 export default function App() {
+  const [color, setColor] = useState<boolean>(false);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <View style={styles.app(color).container}>
+
       <StatusBar style="auto" />
+      <Login />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
