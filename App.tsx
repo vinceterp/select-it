@@ -1,18 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { Input } from './src/components/atoms';
+import React from 'react';
+import { View, Text } from 'react-native';
 import { Login } from './src/components/organisms/Login';
 import { styles } from './src/styles/styles';
+import { useFonts } from 'expo-font';
 
 export default function App() {
-  const [color, setColor] = useState<boolean>(false);
+  const darkMode = false;
+
+  const [fontsLoaded] = useFonts({
+    Roboto: require('./assets/fonts/Roboto.ttf')
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
-    <View style={styles.app(color).container}>
-
-      <StatusBar style="auto" />
+    <View style={styles.app({darkMode}).container}>
       <Login />
-    </View>
-  );
+    </View> 
+  )
 }

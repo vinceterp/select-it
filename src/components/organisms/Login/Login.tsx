@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { ImageBackground, SafeAreaView, Text, View, Image} from 'react-native';
+import React from 'react';
+import { ImageBackground, View, Image} from 'react-native';
 import { styles } from '../../../styles/styles';
-import { Input } from '../../atoms';
 import {LoginBox} from '../../molecules/LoginBox';
 
 export default function Login (){
+    const darkMode = false;
     return (
         <ImageBackground
-            resizeMode={'cover'}
-            style={styles.app(false).loginContainer}
+            resizeMode='cover'
+            style={styles.app({darkMode}).loginContainer}
             source={require('../../../assets/loginBackground_A.png')}
         >
-            <View style={styles.app(false).loginInnerContainer}>
-                <View style={styles.app(false).mediumImageContainer}> 
-                    <Image source={require('../../../assets/select_it_logo.png')} style={styles.app(false).mediumImage}/>
+            <View style={styles.app({darkMode}).loginInnerContainer}>
+                <View style={styles.app({darkMode}).mediumImageContainer}> 
+                    <Image source={require('../../../assets/select_it_logo.png')} style={styles.app({darkMode}).mediumImage}/>
                 </View>
                 <LoginBox />
             </View>
