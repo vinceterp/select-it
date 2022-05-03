@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SafeAreaView } from "react-native";
+import { View } from "react-native";
 import { styles } from "../../../styles";
 import { Input } from "../../atoms";
 
@@ -14,9 +14,9 @@ export default function LoginBox () {
         setPassword(newText);
     }
     return(
-        <SafeAreaView style={styles.app(false).loginBoxContainer}>
+        <View style={styles.app(false).loginBoxContainer}>
             <Input value={username} placeholder={'Username'} onChange={handleUsername} />
             <Input value={password} placeholder={'Password'} onChange={handlePassword} />
-        </SafeAreaView>
+        </View>
     );
 }

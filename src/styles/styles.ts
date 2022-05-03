@@ -2,22 +2,23 @@ import { StyleSheet } from "react-native";
 import { COLORS } from "./colors";
 
 export const styles = {
-    app: (darkMode : boolean) => (
+    app: (styleProperties : any) => (
       StyleSheet.create({
         container: {
           flex: 1,
-          backgroundColor: darkMode ? 'grey' : '#fff',
+          backgroundColor: styleProperties.darkMode ? 'grey' : '#fff',
           alignItems: 'center',
           justifyContent: 'center',
+          fontFamily: "Times New Roman"
         },
         input: {
-          width: 200,
-          borderRadius: 25,
+          width: '95%',
+          height: 45,
+          borderRadius: styleProperties.round ? 25 : 10,
           padding: 10,
-          borderWidth: 2,
-          borderColor: 'red',
-          fontFamily: 'Roboto',
-          backgroundColor: darkMode ? COLORS.NAVBAR_BACKGROUND_GREY : COLORS.WHITE
+          fontFamily: "Roboto",
+          marginBottom: styleProperties.round ? 0 : 20,
+          backgroundColor: styleProperties.darkMode ? COLORS.NAVBAR_BACKGROUND_GREY : COLORS.WHITE
         },
         loginContainer: {
           flex: 1,
@@ -38,8 +39,8 @@ export const styles = {
           width: '90%',
           marginTop: 49,
           borderRadius: 20,
-          backgroundColor: COLORS.LOGIN_BACKGROUND,
-          opacity: 0.7,
+          backgroundColor: `${COLORS.LOGIN_BACKGROUND}90`,
+          zIndex: 0,
           alignItems: "center",
           padding: 20,
         },
@@ -50,7 +51,7 @@ export const styles = {
           height: 120,
           width: 120,
           backgroundColor: COLORS.WHITE,
-          borderRadius: 75,
+          borderRadius: 60,
         },
         mediumImage: {
           height: 90,
