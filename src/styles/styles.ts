@@ -11,13 +11,19 @@ export const styles = {
           justifyContent: 'center',
           fontFamily: "Times New Roman"
         },
-        input: {
-          width: '95%',
+        inputContainer: {
+          width: '100%',
           height: 45,
-          borderRadius: styleProperties.round ? 25 : 10,
-          padding: 10,
           fontFamily: "Roboto",
           marginBottom: styleProperties.round ? 0 : 20,
+          // borderColor: 'red',
+          // borderWidth: 2,
+        },
+        input: {
+          width: '100%',
+          height: '100%',
+          borderRadius: styleProperties.round ? 25 : 10,
+          padding: 10,
           backgroundColor: styleProperties.darkMode ? COLORS.NAVBAR_BACKGROUND_GREY : COLORS.WHITE
         },
         loginContainer: {
