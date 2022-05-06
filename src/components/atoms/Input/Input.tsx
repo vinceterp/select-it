@@ -1,23 +1,27 @@
-import { TextInput } from 'react-native';
+import React from 'react';
+import { TextInput, TextInputProps, View } from 'react-native';
 import { styles } from '../../../styles';
 
-export interface InputProperties {
+export interface InputProperties extends TextInputProps {
     value: string;
-    onChange: (newText: string) => void;
+    onChangeText: (newText: string) => void;
     placeholder: string,
     round?: boolean,
 }
 
 export default function Input (properties : InputProperties) {
     const darkMode = false;
-    const { value, onChange, placeholder } = properties;
+    const { value, onChangeText, placeholder} = properties;
     return (
-        <TextInput
-            style={styles.app({...properties, darkMode}).input}
-            value={value}
-            onChangeText={onChange}
-            placeholder={placeholder}
-        >
-        </TextInput>
+        <View style={styles.app({...properties, darkMode}).inputContainer}>
+            <TextInput
+                {...properties}
+                style={styles.app({...properties, darkMode}).input}
+                value={value}
+                onChangeText={onChangeText}
+                placeholder={placeholder}
+            >
+            </TextInput>
+        </View>
     );
 }

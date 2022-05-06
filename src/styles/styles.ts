@@ -11,13 +11,21 @@ export const styles = {
           justifyContent: 'center',
           fontFamily: "Times New Roman"
         },
-        input: {
-          width: '95%',
+        inputContainer: {
+          display: "flex",
+          alignItems: 'center',
+          width: '100%',
           height: 45,
-          borderRadius: styleProperties.round ? 25 : 10,
-          padding: 10,
           fontFamily: "Roboto",
           marginBottom: styleProperties.round ? 0 : 20,
+          // borderColor: 'red',
+          // borderWidth: 2,
+        },
+        input: {
+          width: '95%',
+          height: '100%',
+          borderRadius: styleProperties.round ? 25 : 10,
+          padding: 10,
           backgroundColor: styleProperties.darkMode ? COLORS.NAVBAR_BACKGROUND_GREY : COLORS.WHITE
         },
         loginContainer: {
@@ -39,10 +47,18 @@ export const styles = {
           width: '90%',
           marginTop: 49,
           borderRadius: 20,
-          backgroundColor: `${COLORS.LOGIN_BACKGROUND}90`,
+          backgroundColor: `${COLORS.LOGIN_BACKGROUND}85`,
           zIndex: 0,
           alignItems: "center",
-          padding: 20,
+          padding: 25,
+        },
+        loginButton: {
+          width: '95%', 
+          height: 45, 
+          backgroundColor: styleProperties.buttonStyle === 'login' ? COLORS.LOGIN_BUTTON_BLUE : COLORS.WHITE, 
+          borderRadius: 10, 
+          alignItems: 'center', 
+          justifyContent: 'center'
         },
         mediumImageContainer: {
           display: 'flex',
@@ -51,6 +67,13 @@ export const styles = {
           height: 120,
           width: 120,
           backgroundColor: COLORS.WHITE,
+          shadowColor: '#000',
+          shadowRadius: 60,
+          shadowOffset: {
+            height: 60,
+            width: 60,
+          },
+          shadowOpacity: 1,
           borderRadius: 60,
         },
         mediumImage: {
