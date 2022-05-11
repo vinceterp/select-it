@@ -9,7 +9,6 @@ export const styles = {
           backgroundColor: styleProperties.darkMode ? 'grey' : '#fff',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: "Times New Roman"
         },
         inputContainer: {
           display: "flex",
@@ -22,7 +21,7 @@ export const styles = {
           // borderWidth: 2,
         },
         input: {
-          width: '95%',
+          width: '100%',
           height: '100%',
           borderRadius: styleProperties.round ? 25 : 10,
           padding: 10,
@@ -50,15 +49,23 @@ export const styles = {
           backgroundColor: `${COLORS.LOGIN_BACKGROUND}85`,
           zIndex: 0,
           alignItems: "center",
-          padding: 25,
+          padding: 20,
         },
         loginButton: {
-          width: '95%', 
+          width: '100%', 
           height: 45, 
-          backgroundColor: styleProperties.buttonStyle === 'login' ? COLORS.LOGIN_BUTTON_BLUE : COLORS.WHITE, 
+          backgroundColor: COLORS.LOGIN_BUTTON_BLUE, 
           borderRadius: 10, 
           alignItems: 'center', 
           justifyContent: 'center'
+        },
+        ssoButton: {
+          width: '100%', 
+          height: 45, 
+          backgroundColor: COLORS.WHITE,
+          borderRadius: 10,
+          alignItems: 'center',
+          marginBottom: 20
         },
         mediumImageContainer: {
           display: 'flex',
@@ -67,18 +74,29 @@ export const styles = {
           height: 120,
           width: 120,
           backgroundColor: COLORS.WHITE,
-          shadowColor: '#000',
-          shadowRadius: 60,
-          shadowOffset: {
-            height: 60,
-            width: 60,
-          },
-          shadowOpacity: 1,
+          shadowColor: COLORS.BLACK,
+          shadowOffset: { width: 2, height: 2 },
+          shadowOpacity: 0.5,
+          shadowRadius: 2,  
+          elevation: 5,
           borderRadius: 60,
+        },
+        buttonIconContainer: {
+          position: 'absolute',
+          left: 15,
+          elevation: 5,
+          shadowColor: COLORS.BLACK,
+          shadowOffset: { width: 2, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 2,  
         },
         mediumImage: {
           height: 90,
           width: 90
+        },
+        smallImage: {
+          height: 25,
+          width: 25
         }
       })
     ),
