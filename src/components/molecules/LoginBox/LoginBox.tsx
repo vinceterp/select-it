@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, Image } from "react-native";
+import { useBareAuth } from "../../../contexts";
 import { COLORS, styles } from "../../../styles";
 import { Input, Button } from "../../atoms";
 
@@ -7,17 +8,24 @@ export default function LoginBox () {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
+    const {userData, setUserData} = useBareAuth();
+    console.info(userData, setUserData);
+
     const handleUsername = (newText: string) => {
         setUsername(newText);
     }
     const handlePassword = (newText: string) => {
         setPassword(newText);
     }
+    const setFimiToken = () => {
+        setUserData({...userData, email: 'some thing@gmail.com'})
+    }
+
     return(
         <View style={styles.app(false).loginBoxContainer}>
             <Input value={username} placeholder='Username' onChangeText={handleUsername} />
             <Input value={password} placeholder='Password' onChangeText={handlePassword} secureTextEntry={true} />
-            <Button buttonTheme="login" title="Continue" onPress={()=>{console.info(`username: ${username} password: ${password}`)}}/>
+            <Button buttonTheme="login" title="Continue" onPress={setFimiToken}/>
             <View style={{height: 60, width: '95%', display: 'flex', alignItems:'center', justifyContent: 'center'}} >
                 <Text style={{fontFamily: "Roboto", fontSize: 20, color: COLORS.WHITE}}>or</Text>
             </View>
