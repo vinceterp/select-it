@@ -5,6 +5,7 @@ import {LoginBox} from '../../molecules/LoginBox';
 
 export default function Login (){
     const darkMode = false;
+    
     return (
         <ImageBackground
             resizeMode='cover'
