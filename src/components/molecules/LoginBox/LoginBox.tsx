@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 import { useBareAuth } from "../../../contexts";
 import { COLORS, styles } from "../../../styles";
@@ -9,8 +9,7 @@ export default function LoginBox () {
     const [password, setPassword] = useState<string>('');
 
     const {userData, setUserData} = useBareAuth();
-    console.info(userData, setUserData);
-
+    
     const handleUsername = (newText: string) => {
         setUsername(newText);
     }
@@ -18,9 +17,13 @@ export default function LoginBox () {
         setPassword(newText);
     }
     const setFimiToken = () => {
-        setUserData({...userData, email: 'some thing@gmail.com'})
+        setUserData({...userData, email: username})
     }
 
+    useEffect(() => {
+        console.info(userData);
+    }, [userData])
+    
     return(
         <View style={styles.app(false).loginBoxContainer}>
             <Input value={username} placeholder='Username' onChangeText={handleUsername} />
