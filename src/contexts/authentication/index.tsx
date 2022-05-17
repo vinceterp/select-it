@@ -1,11 +1,15 @@
-import { createContext, ReactNode, useContext, useMemo } from "react";
-import { useAsyncStorage } from "../../hooks";
+import { createContext, ReactNode, useContext, useState } from "react";
+
+export const initialUserDataContext = {
+    email: '',
+    token: '',
+    username: ''
+};
 
 export interface UserDataType {
-    token?: string;
-    setToken?: (newToken: string) => void;
-    username?: string;
-    email?: string;
+    token: string;
+    username: string;
+    email: string;
 };
 
 export interface AuthenticationContextType {
@@ -14,26 +18,18 @@ export interface AuthenticationContextType {
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextType>({
-    userData: {
-        email: 'my@selectit.com',
-        setToken: (token: string) => {
-
-        },
-        token: '',
-        username: 'janedoe123'
-    },
+    userData: initialUserDataContext,
     setUserData: (value: UserDataType) => {}
 });
 
-export const AuthenticationProvider = async ({children}: {children: ReactNode}) => {
-    const {getStorageItem, setStorageItem} = useAsyncStorage<AuthenticationContextType>();
-    const userData= await getStorageItem('userData');
-    const setUserData = (val: UserDataType) => setStorageItem('userData', val);
-    const contextValue = useMemo(
-        (): AuthenticationContextType => ({userData, setUserData}),
-        [],
+export const AuthenticationProvider = ({children}: {children: ReactNode}) => {
+    const [userData, setUserData] = useState<UserDataType>(initialUserDataContext);
+    const contextValue: AuthenticationContextType= {userData, setUserData};
+    return (
+        <AuthenticationContext.Provider value={contextValue}>
+            {children}
+        </AuthenticationContext.Provider>
     );
-    return <AuthenticationContext.Provider value={contextValue} >{children}</AuthenticationContext.Provider>
 };
 
 export const useBareAuth = () => useContext(AuthenticationContext);

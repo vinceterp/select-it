@@ -1,13 +1,23 @@
-import { Login } from "../components/organisms/Login";
+import { SignUp, Login, Home, AddSound } from "../components/organisms";
 
-
-export default [
+export const unathenticatedRoute=  [
     {
-        path: '/login',
-        element: Login
+        name: 'Login',
+        component: Login
     },
     {
-        path: '/home',
-        element: null
+        name: 'SignUp',
+        component: SignUp
+    }
+]
+
+export const authenticatedRoute=  [
+    {
+        name: 'Home',
+        component: Home
+    },
+    {
+        name: 'AddSound',
+        component: AddSound
     }
 ]

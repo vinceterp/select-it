@@ -7,8 +7,6 @@ export const styles = {
         container: {
           flex: 1,
           backgroundColor: styleProperties.darkMode ? 'grey' : '#fff',
-          alignItems: 'center',
-          justifyContent: 'center',
         },
         inputContainer: {
           display: "flex",
