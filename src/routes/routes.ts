@@ -1,6 +1,5 @@
 import { SignUp, Login, Home, AddSound } from "../components/organisms";
 
-
 export const unathenticatedRoute=  [
     {
         name: 'Login',
@@ -12,13 +11,13 @@ export const unathenticatedRoute=  [
     }
 ]
 
-export const athenticatedRoute=  [
+export const authenticatedRoute=  [
     {
         name: 'Home',
         component: Home
     },
     {
         name: 'AddSound',
-        element: AddSound
+        component: AddSound
     }
 ]

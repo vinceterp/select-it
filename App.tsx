@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Login } from './src/components/organisms/Login';
+import { Navigation } from './src/components/organisms';
 import { styles } from './src/styles/styles';
 import { useFonts } from 'expo-font';
 import { AuthenticationProvider } from './src/contexts';
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <AuthenticationProvider>
       <View style={styles.app({darkMode}).container}>
-        <Login />
+        <Navigation />
       </View> 
     </AuthenticationProvider>
   )
