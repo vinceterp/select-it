@@ -1,1 +1,4 @@
-export { Login } from './Login';
+export * from './Login';
+export * from './AddSound';
+export * from './SignUp';
+export * from './Home';
