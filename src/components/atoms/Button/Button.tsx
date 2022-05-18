@@ -19,7 +19,7 @@ export default function Button(properties: ButtonProperties) {
                     style={styles.app({...properties, darkMode}).loginButton}
                     {...properties}
                 >
-                    <Text style={{color: COLORS.WHITE}}>{title}</Text>
+                    <Text style={styles.app({darkMode, buttonTheme}).buttonText}>{title}</Text>
                 </TouchableOpacity>
             );
         case 'sso-button':
@@ -32,7 +32,7 @@ export default function Button(properties: ButtonProperties) {
                         <View style={styles.app({}).buttonIconContainer}>
                             {icon}
                         </View>
-                        <Text style={{color: COLORS.BLACK}}>{title}</Text>
+                        <Text style={styles.app({darkMode, buttonTheme}).buttonText}>{title}</Text>
                     </View>
                 </TouchableOpacity>
             );

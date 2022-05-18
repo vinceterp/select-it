@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableHighlight, TouchableOpacity } from "react-native";
 import { useBareAuth } from "../../../contexts";
 import { COLORS, styles } from "../../../styles";
 import { Input, Button } from "../../atoms";
@@ -26,10 +26,16 @@ export default function LoginBox () {
             <Input value={password} placeholder='Password' onChangeText={handlePassword} secureTextEntry={true} />
             <Button buttonTheme="login" title="Continue" onPress={() => setFimiToken(username)}/>
             <View style={{height: 60, width: '95%', display: 'flex', alignItems:'center', justifyContent: 'center'}} >
-                <Text style={{fontFamily: "Roboto", fontSize: 20, color: COLORS.WHITE}}>or</Text>
+                <Text style={{...styles.app({}).buttonText, fontWeight: '700', fontSize: 18}}>or</Text>
             </View>
-            <Button icon={<Image style={styles.app({}).smallImage} source={require('../../../assets/google_icon.png')} />} buttonTheme="sso-button" title="Login with Google" onPress={() => setFimiToken('google')} />
-            <Button icon={<Image style={styles.app({}).smallImage} source={require('../../../assets/facebook_icon.png')} />} buttonTheme="sso-button" title="Login with Facebook" onPress={() => setFimiToken('facebook')} />
+            <Button icon={<Image style={styles.app({}).smallImage} source={require('../../../assets/google_icon.png')} />} buttonTheme="sso-button" title="Continue with Google" onPress={() => setFimiToken('google')} />
+            <Button icon={<Image style={styles.app({}).smallImage} source={require('../../../assets/facebook_icon.png')} />} buttonTheme="sso-button" title="Continue with Facebook" onPress={() => setFimiToken('facebook')} />
+            <Text style={styles.app({basicTextColor: COLORS.WHITE}).basicText}>
+                Don't have an account? 
+                <TouchableOpacity style={{borderWidth: 2, borderColor: 'red'}} onPress={() => console.log('i was pressed')}>
+                    <Text style={styles.app({basicTextColor: COLORS.LOGIN_BUTTON_BLUE}).basicText}> Sign up</Text>
+                </TouchableOpacity>
+            </Text>
         </View>
     );
 }

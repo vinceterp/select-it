@@ -6,14 +6,13 @@ export const styles = {
       StyleSheet.create({
         container: {
           flex: 1,
-          backgroundColor: styleProperties.darkMode ? 'grey' : '#fff',
+          backgroundColor: styleProperties.darkMode ? 'grey' : '#fff'
         },
         inputContainer: {
           display: "flex",
           alignItems: 'center',
           width: '100%',
           height: 45,
-          fontFamily: "Roboto",
           marginBottom: styleProperties.round ? 0 : 20,
           // borderColor: 'red',
           // borderWidth: 2,
@@ -55,7 +54,7 @@ export const styles = {
           backgroundColor: COLORS.LOGIN_BUTTON_BLUE, 
           borderRadius: 10, 
           alignItems: 'center', 
-          justifyContent: 'center'
+          justifyContent: 'center',
         },
         ssoButton: {
           width: '100%', 
@@ -64,6 +63,17 @@ export const styles = {
           borderRadius: 10,
           alignItems: 'center',
           marginBottom: 20
+        },
+        buttonText: {
+          fontFamily: 'Roboto',
+          fontSize: 15,
+          color: styleProperties.buttonTheme === 'sso-button' ? COLORS.BLACK : COLORS.WHITE,
+        },
+        basicText: {
+          color: styleProperties.basicTextColor,
+          fontSize: 15,
+          fontFamily: 'Roboto',
+          alignSelf: "flex-start"
         },
         mediumImageContainer: {
           display: 'flex',
