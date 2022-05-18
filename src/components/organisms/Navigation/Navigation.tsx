@@ -34,6 +34,7 @@ const LandingFlow = () => (
 
 export default function Navigation() {
     const {userData} = useBareAuth();
+    
     useEffect( () => {
         console.info(userData);
     } ,[userData]);

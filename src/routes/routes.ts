@@ -1,4 +1,8 @@
-import { SignUp, Login, Home, AddSound } from "../components/organisms";
+import { AddSound } from "../components/organisms/AddSound";
+import { Home } from "../components/organisms/Home";
+import { Login } from "../components/organisms/Login";
+import { SignUp } from "../components/organisms/SignUp";
+
 
 export const unathenticatedRoute=  [
     {
