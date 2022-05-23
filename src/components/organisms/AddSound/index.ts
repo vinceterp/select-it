@@ -1,1 +1,1 @@
-export { default as AddSound } from './AddSound';
+export { default as AddSound } from './AddSound'
