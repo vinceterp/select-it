@@ -1,1 +1,2 @@
-export { useAsyncStorage } from './useAsyncStorage';
+export { useAsyncStorage } from './useAsyncStorage'
+export { useCacheResources } from './useCacheResources'

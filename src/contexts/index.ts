@@ -1,1 +1,1 @@
-export { AuthenticationProvider, useBareAuth} from './authentication';
+export { AuthenticationProvider, useBareAuth } from './authentication'
