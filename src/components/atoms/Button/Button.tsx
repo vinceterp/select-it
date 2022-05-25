@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native'
 import { COLORS, styles } from '../../../styles'
+import { Label } from '../Label'
 
 export interface ButtonProperties extends TouchableOpacityProps {
   buttonTheme: 'login' | 'sso-button' | 'primary'
@@ -24,9 +25,7 @@ export default function Button(properties: ButtonProperties) {
           style={styles.app({ ...properties, darkMode }).loginButton}
           {...properties}
         >
-          <Text style={styles.app({ darkMode, buttonTheme }).buttonText}>
-            {title}
-          </Text>
+          <Label label={title} size="S" />
         </TouchableOpacity>
       )
     case 'sso-button':
@@ -46,9 +45,7 @@ export default function Button(properties: ButtonProperties) {
             }}
           >
             <View style={styles.app({}).buttonIconContainer}>{icon}</View>
-            <Text style={styles.app({ darkMode, buttonTheme }).buttonText}>
-              {title}
-            </Text>
+            <Label label={title} size="S" color={COLORS.BLACK} />
           </View>
         </TouchableOpacity>
       )

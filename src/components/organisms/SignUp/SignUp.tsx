@@ -2,6 +2,7 @@ import { NavigationProp } from '@react-navigation/native'
 import React from 'react'
 import { View, Image, ImageBackground } from 'react-native'
 import { styles } from '../../../styles'
+import { Label } from '../../atoms'
 import { SignUpBox } from '../../molecules'
 
 export interface Properties {
