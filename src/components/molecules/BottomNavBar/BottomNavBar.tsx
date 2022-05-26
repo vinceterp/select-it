@@ -8,19 +8,19 @@ const renderNavIcon = (routeName: string, darkMode: boolean, isFocused: boolean)
     switch(routeName){
         case 'Home':
             return (
-                <Image style={styles.app({darkMode, isFocused}).smallImage} source={require('../../../assets/google_icon.png')}/>
+                <Image style={styles.app({darkMode, isFocused}).smallImage} source={ isFocused ? require('../../../assets/home_icon_focused.png') : require('../../../assets/home_icon.png')}/>
             );
         case 'Add Sound':
             return (
-                <Image style={styles.app({darkMode, isFocused}).smallImage} source={require('../../../assets/google_icon.png')}/>
+                <Image style={styles.app({darkMode, isFocused}).smallImage} source={isFocused ? require('../../../assets/addsound_icon_focused.png') : require('../../../assets/addsound_icon.png')}/>
             );
         case 'Help':
             return (
-                <Image style={styles.app({darkMode, isFocused}).smallImage} source={require('../../../assets/google_icon.png')}/>
+                <Image style={styles.app({darkMode, isFocused}).smallImage} source={isFocused ? require('../../../assets/help_icon_focused.png') : require('../../../assets/help_icon.png')}/>
             );
         case 'Settings':
             return (
-                <Image style={styles.app({darkMode, isFocused}).smallImage} source={require('../../../assets/google_icon.png')}/>
+                <Image style={styles.app({darkMode, isFocused}).smallImage} source={isFocused ? require('../../../assets/settings_icon_focused.png') : require('../../../assets/settings_icon.png')}/>
             );
     }
 }
