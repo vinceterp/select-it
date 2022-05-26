@@ -13,6 +13,10 @@ export function useCacheResources(): {
       require('../../assets/addsound_icon.png'),
       require('../../assets/help_icon.png'),
       require('../../assets/settings_icon.png'),
+      require('../../assets/home_icon_focused.png'),
+      require('../../assets/addsound_icon_focused.png'),
+      require('../../assets/help_icon_focused.png'),
+      require('../../assets/settings_icon_focused.png'),
     ]
 
     const cacheImages = images.map((image) => {
