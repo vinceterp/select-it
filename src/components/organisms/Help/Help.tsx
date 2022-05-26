@@ -1,18 +1,17 @@
 import { NavigationProp } from '@react-navigation/native'
 import React from 'react'
 import { View } from 'react-native'
-import { styles } from '../../../styles'
+import { COLORS } from '../../../styles'
 import { Label } from '../../atoms'
 
 export interface Properties {
   navigation: NavigationProp<any, any>
 }
 
-export default function SignUpBox({ navigation }: Properties) {
-  const darkMode = false
+export default function Help({ navigation }: Properties) {
   return (
-    <View style={styles.app({ darkMode }).loginBoxContainer}>
-      <Label label="Sign Up" size="L" />
+    <View>
+      <Label label="I'm the help" size="L" color={COLORS.BLACK}></Label>
     </View>
   )
 }
