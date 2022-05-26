@@ -4,17 +4,12 @@ import { Home } from '../components/organisms/Home'
 import { Login } from '../components/organisms/Login'
 import { Settings } from '../components/organisms/Settings'
 import { SignUp } from '../components/organisms/SignUp'
+import { ReactNode } from 'react'
 
-export const unathenticatedRoute = [
-  {
-    name: 'Login',
-    component: Login,
-  },
-  {
-    name: 'SignUp',
-    component: SignUp,
-  },
-]
+export interface Route {
+  name: string;
+  component: ReactNode;
+}
 
 export const authenticatedRoute = [
   {
@@ -32,5 +27,16 @@ export const authenticatedRoute = [
   {
     name: 'Settings',
     component: Settings,
+  },
+]
+
+export const unathenticatedRoute = [
+  {
+    name: 'Login',
+    component: Login,
+  },
+  {
+    name: 'SignUp',
+    component: SignUp,
   },
 ]

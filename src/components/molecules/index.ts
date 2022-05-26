@@ -1,2 +1,3 @@
-export { LoginBox } from './LoginBox'
-export { SignUpBox } from './SignUpBox'
+export * from './LoginBox';
+export * from './SignUpBox';
+export * from './BottomNavBar';

@@ -8,6 +8,22 @@ export const styles = {
         flex: 1,
         backgroundColor: styleProperties.darkMode ? 'grey' : '#fff',
       },
+      bottomNavBar: {
+        height: 60,
+        width: 328,
+        borderRadius: 30,
+        alignSelf: 'center',
+        backgroundColor: styleProperties.darkMode ? COLORS.NAVBAR_BACKGROUND_DARK : COLORS.NAVBAR_BACKGROUND_GREY,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      bottomNavIcon: {
+        height: 22,
+        width: 22,
+        color: styleProperties.isFocused ? COLORS.NAVBAR_BUTTON_HIGHLIGHTED : styleProperties.darkMode ? COLORS.WHITE : COLORS.NAVBAR_BUTTON,
+      },
       inputContainer: {
         display: 'flex',
         alignItems: 'center',
