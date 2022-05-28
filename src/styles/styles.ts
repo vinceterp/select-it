@@ -9,9 +9,11 @@ export const styles = {
         backgroundColor: styleProperties.darkMode ? 'grey' : '#fff',
       },
       bottomNavBar: {
+        position: 'absolute',
+        bottom: 20,
         height: 60,
         width: 328,
-        borderRadius: 30,
+        borderRadius: 20,
         alignSelf: 'center',
         backgroundColor: styleProperties.darkMode ? COLORS.NAVBAR_BACKGROUND_DARK : COLORS.NAVBAR_BACKGROUND_GREY,
         display: 'flex',
@@ -22,7 +24,11 @@ export const styles = {
       bottomNavIcon: {
         height: 22,
         width: 22,
-        color: styleProperties.isFocused ? COLORS.NAVBAR_BUTTON_HIGHLIGHTED : styleProperties.darkMode ? COLORS.WHITE : COLORS.NAVBAR_BUTTON,
+      },
+      bottomNavButton: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        flex: 1
       },
       inputContainer: {
         display: 'flex',
@@ -128,5 +134,9 @@ export const styles = {
         height: 25,
         width: 25,
       },
+      carouselImage: {
+        height: '95%',
+        width: '95%',
+      }
     }),
 }

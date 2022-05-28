@@ -33,7 +33,7 @@ const LandingFlow = () => {
   }, [setActiveScreenIndex]);
   return (
     <LandingBottomTabNav.Navigator 
-      screenOptions={{ headerShown: true }}
+      screenOptions={{ headerShown: false }}
       tabBar={(props) => <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} activeScreenIndex={activeScreenIndex} setActiveScreenIndex={updateScreenIndex}/>}
     >
       {authenticatedRoute.map((route, indx) => {

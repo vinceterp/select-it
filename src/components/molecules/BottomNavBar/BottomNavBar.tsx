@@ -50,7 +50,7 @@ export default function BottomNavBar({ authenticatedRoute ,activeScreenIndex, se
                     <TouchableOpacity
                         key={`navItem${index}`}
                         onPress={() => onNavPress(index, route.name)}
-                        style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}
+                        style={styles.app({}).bottomNavButton}
                     >   
                         {renderNavIcon(route.name, darkMode, isFocused)}
                         <Label label={route.name} size="S" color={isFocused ? COLORS.NAVBAR_BUTTON_HIGHLIGHTED : darkMode ? COLORS.WHITE : COLORS.NAVBAR_BUTTON}/>
