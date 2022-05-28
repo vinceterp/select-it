@@ -17,11 +17,12 @@ export default function MyCarousel (){
         <View style={{backgroundColor: COLORS.PRIMARY_BLUE, height: 200, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             <View style={{height: 122, marginTop: 20}}>
                 <Carousel
-                    data={[<Image source={require('../../../assets/sg_logo.png')} style={styles.app({}).carouselImage} />, 'moredata']}
+                    data={[<Image source={require('../../../assets/sg_logo.png')} style={styles.app({}).carouselImage} />, <Image source={require('../../../assets/select_it_logo.png')} style={styles.app({}).mediumImage}/>]}
                     renderItem={(props) => renderItem(props)}
                     sliderWidth={400}
                     itemWidth={290}
                     layout={"default"}
+                    enableSnap
                 />
             </View>
         </View>
