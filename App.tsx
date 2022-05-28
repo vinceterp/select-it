@@ -17,7 +17,6 @@ export default function App() {
     async function prepare() {
       try {
         await SplashScreen.preventAutoHideAsync();
-        //load resources here
         await cacheResources();
         await Font.loadAsync({
           Roboto: require("./assets/fonts/Roboto-Regular.ttf"),
@@ -30,7 +29,7 @@ export default function App() {
     }
 
     prepare();
-  }, []);
+  }, [cacheResources, setAppIsReady]);
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {

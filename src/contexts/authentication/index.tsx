@@ -15,11 +15,13 @@ export interface UserDataType {
 export interface AuthenticationContextType {
   userData: UserDataType
   setUserData: (value: UserDataType) => void
+  logout: () => void;
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextType>({
   userData: initialUserDataContext,
   setUserData: (value: UserDataType) => {},
+  logout: () => {},
 })
 
 export const AuthenticationProvider = ({
@@ -27,8 +29,12 @@ export const AuthenticationProvider = ({
 }: {
   children: ReactNode
 }) => {
-  const [userData, setUserData] = useState<UserDataType>(initialUserDataContext)
-  const contextValue: AuthenticationContextType = { userData, setUserData }
+  const [userData, setUserData] = useState<UserDataType>(initialUserDataContext);
+  
+  const logout = () => {
+    setUserData({ ...userData, token: '' })
+  }
+  const contextValue: AuthenticationContextType = { userData, setUserData, logout }
   return (
     <AuthenticationContext.Provider value={contextValue}>
       {children}
