@@ -1,9 +1,8 @@
-import { View, Text } from 'react-native'
+import React from 'react'
+import { Home } from '../Home'
 
 export default function AddSound() {
   return (
-    <View>
-      <Text>I'm a add sound screen</Text>
-    </View>
+    <Home />
   )
 }
