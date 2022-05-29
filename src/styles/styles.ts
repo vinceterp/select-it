@@ -110,11 +110,11 @@ export const styles = {
         height: 120,
         width: 120,
         backgroundColor: COLORS.WHITE,
+        elevation: 5,
         shadowColor: COLORS.BLACK,
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.5,
         shadowRadius: 2,
-        elevation: 5,
         borderRadius: 60,
       },
       buttonIconContainer: {
@@ -126,6 +126,21 @@ export const styles = {
         shadowOpacity: 0.2,
         shadowRadius: 2,
       },
+      carouselItemContainer: {
+        backgroundColor: COLORS.WHITE, 
+        borderRadius: 20, 
+        height: '90%', 
+        width: '100%', 
+        padding: 5, 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        shadowColor: COLORS.BLACK,
+        shadowOffset: { width: 6, height: 6 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5,
+      },
       mediumImage: {
         height: 90,
         width: 90,
@@ -135,8 +150,8 @@ export const styles = {
         width: 25,
       },
       carouselImage: {
-        height: '95%',
-        width: '95%',
+        height: '90%',
+        width: '90%',
       }
     }),
 }

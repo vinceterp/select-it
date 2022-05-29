@@ -1,11 +1,8 @@
-import { View, Text } from 'react-native'
-import { Carousel } from '../../molecules';
+import React from 'react'
+import { Home } from '../Home'
 
 export default function AddSound() {
   return (
-    <View>
-      <Carousel />
-      <Text>I'm a add sound screen</Text>
-    </View>
+    <Home />
   )
 }

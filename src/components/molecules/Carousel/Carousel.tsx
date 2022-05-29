@@ -8,14 +8,14 @@ export default function MyCarousel (){
 
     const renderItem = ({item, index}: {item: any, index: number}) => {
         return (
-            <View style={{backgroundColor: COLORS.WHITE, borderRadius: 20, height: '100%', width: '100%', padding: 5, display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+            <View style={styles.app({}).carouselItemContainer} >
                 {typeof item === 'string' ? <Label label={item} size="M" color={COLORS.BLACK}/> : item}
             </View>
         );
     }
     return (
         <View style={{backgroundColor: COLORS.PRIMARY_BLUE, height: 200, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            <View style={{height: 122, marginTop: 20}}>
+            <View style={{height: 122, marginTop: 40}}>
                 <Carousel
                     data={[<Image source={require('../../../assets/sg_logo.png')} style={styles.app({}).carouselImage} />, <Image source={require('../../../assets/select_it_logo.png')} style={styles.app({}).mediumImage}/>]}
                     renderItem={(props) => renderItem(props)}

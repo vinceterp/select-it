@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -6,7 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useBareAuth } from '../../../contexts'
 
 import { unathenticatedRoute, authenticatedRoute } from '../../../routes';
-import { BottomNavBar } from '../../molecules'
+import { BottomNavBar, Carousel } from '../../molecules'
+import { View } from 'react-native'
 
 const AuthStack = createNativeStackNavigator()
 
@@ -32,20 +33,23 @@ const LandingFlow = () => {
     setActiveScreenIndex(index);
   }, [setActiveScreenIndex]);
   return (
-    <LandingBottomTabNav.Navigator 
-      screenOptions={{ headerShown: false }}
-      tabBar={(props) => <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} activeScreenIndex={activeScreenIndex} setActiveScreenIndex={updateScreenIndex}/>}
-    >
-      {authenticatedRoute.map((route, indx) => {
-        return (
-          <LandingBottomTabNav.Screen
-            key={`${route.name}${indx}`}
-            name={route.name}
-            component={route.component}
-          />
-        )
-      })}
-    </LandingBottomTabNav.Navigator>
+    <View style={{ flex: 1 }}>
+      <Carousel />
+      <LandingBottomTabNav.Navigator 
+        screenOptions={{ headerShown: false }}
+        tabBar={(props) => <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} activeScreenIndex={activeScreenIndex} setActiveScreenIndex={updateScreenIndex}/>}
+      >
+        {authenticatedRoute.map((route, indx) => {
+          return (
+            <LandingBottomTabNav.Screen
+              key={`${route.name}${indx}`}
+              name={route.name}
+              component={route.component}
+            />
+          )
+        })}
+      </LandingBottomTabNav.Navigator>
+    </View>
   );
 }
 

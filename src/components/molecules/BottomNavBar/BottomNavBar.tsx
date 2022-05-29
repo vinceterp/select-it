@@ -53,7 +53,7 @@ export default function BottomNavBar({ authenticatedRoute ,activeScreenIndex, se
                         style={styles.app({}).bottomNavButton}
                     >   
                         {renderNavIcon(route.name, darkMode, isFocused)}
-                        <Label label={route.name} size="S" color={isFocused ? COLORS.NAVBAR_BUTTON_HIGHLIGHTED : darkMode ? COLORS.WHITE : COLORS.NAVBAR_BUTTON}/>
+                        <Label label={route.name} size="XS" color={isFocused ? COLORS.NAVBAR_BUTTON_HIGHLIGHTED : darkMode ? COLORS.WHITE : COLORS.NAVBAR_BUTTON}/>
                     </TouchableOpacity>
                 );
             })}
