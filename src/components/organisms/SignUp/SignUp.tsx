@@ -1,6 +1,7 @@
 import { NavigationProp } from '@react-navigation/native'
 import React from 'react'
 import { View, Image, ImageBackground } from 'react-native'
+import { useUserPref } from '../../../contexts'
 import { styles } from '../../../styles'
 import { SignUpBox } from '../../molecules'
 
@@ -9,7 +10,7 @@ export interface Properties {
 }
 
 export default function Signup({ navigation }: Properties) {
-  const darkMode = false
+  const { darkMode } = useUserPref();
   return (
     <ImageBackground
       resizeMode="cover"

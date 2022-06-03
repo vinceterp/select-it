@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { TouchableOpacity, View, Image } from "react-native";
+import { useUserPref } from "../../../contexts";
 import { Route } from "../../../routes";
 import { COLORS, styles } from "../../../styles";
 import { Label } from "../../atoms";
@@ -33,13 +34,24 @@ export interface Properties{
 }
 
 export default function BottomNavBar({ authenticatedRoute ,activeScreenIndex, setActiveScreenIndex, ...rest }: Properties){
-    const darkMode = false;
+    const { darkMode } = useUserPref();
 
     const { navigation } = rest;
+
+    // Define the below values in a context
+    const overlayOpen = true;
+    const showAddSoundOverlay = () => (console.warn('Showing overlay'));
 
     const onNavPress = useCallback((index: number, route: string) =>{
         setActiveScreenIndex(index);
         navigation?.navigate(route, {});
+        if (route === 'Add Sound'){
+            if(!overlayOpen){
+                //do nothing
+            }else{
+                showAddSoundOverlay();
+            }
+        }
     }, [setActiveScreenIndex]);
 
     return (
@@ -53,7 +65,7 @@ export default function BottomNavBar({ authenticatedRoute ,activeScreenIndex, se
                         style={styles.app({}).bottomNavButton}
                     >   
                         {renderNavIcon(route.name, darkMode, isFocused)}
-                        <Label label={route.name} size="XS" color={isFocused ? COLORS.NAVBAR_BUTTON_HIGHLIGHTED : darkMode ? COLORS.WHITE : COLORS.NAVBAR_BUTTON}/>
+                        <Label label={route.name} size="XS" color={isFocused ? COLORS.SECONDARY_BLUE : darkMode ? COLORS.WHITE : COLORS.SECONDARY_GREY}/>
                     </TouchableOpacity>
                 );
             })}

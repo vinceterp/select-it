@@ -5,6 +5,7 @@ import {
   Text,
   View,
 } from 'react-native'
+import { useUserPref } from '../../../contexts'
 import { COLORS, styles } from '../../../styles'
 import { Label } from '../Label'
 
@@ -16,7 +17,7 @@ export interface ButtonProperties extends TouchableOpacityProps {
 
 export default function Button(properties: ButtonProperties) {
   const { buttonTheme, title, icon } = properties
-  const darkMode = false
+  const { darkMode } = useUserPref();
 
   switch (buttonTheme) {
     case 'login':

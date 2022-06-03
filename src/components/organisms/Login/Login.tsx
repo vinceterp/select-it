@@ -1,6 +1,7 @@
 import { NavigationProp } from '@react-navigation/native'
 import React from 'react'
 import { ImageBackground, View, Image } from 'react-native'
+import { useUserPref } from '../../../contexts'
 import { styles } from '../../../styles/styles'
 import { LoginBox } from '../../molecules/LoginBox'
 
@@ -9,7 +10,7 @@ export interface Properties {
 }
 
 export default function Login({ navigation }: Properties) {
-  const darkMode = false
+  const { darkMode } = useUserPref();
 
   return (
     <ImageBackground

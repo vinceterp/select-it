@@ -1,4 +1,5 @@
 import { Text } from 'react-native'
+import { useUserPref } from '../../../contexts'
 import { COLORS, styles } from '../../../styles'
 
 export interface Properties {
@@ -8,7 +9,7 @@ export interface Properties {
 }
 
 export default function Label({ label, size, color }: Properties) {
-  const darkMode = false
+  const { darkMode } = useUserPref();
 
   let fontSize: number
   switch (size) {
