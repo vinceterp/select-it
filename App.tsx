@@ -4,11 +4,11 @@ import { Navigation } from "./src/components/organisms";
 import { styles } from "./src/styles/styles";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
-import { AuthenticationProvider } from "./src/contexts";
+import { AuthenticationProvider, UserPreferencesProvider, useUserPref } from "./src/contexts";
 import { useCacheResources } from "./src/hooks";
 
 export default function App() {
-  const darkMode = false;
+  const { darkMode } = useUserPref();
   const { cacheResources } = useCacheResources();
 
   const [appIsReady, setAppIsReady] = useState<boolean>(false);
@@ -43,12 +43,14 @@ export default function App() {
 
   return (
     <AuthenticationProvider>
-      <View
-        onLayout={onLayoutRootView}
-        style={styles.app({ darkMode }).container}
-      >
-        <Navigation />
-      </View>
+      <UserPreferencesProvider>
+        <View
+          onLayout={onLayoutRootView}
+          style={styles.app({ darkMode }).container}
+        >
+          <Navigation />
+        </View>
+      </UserPreferencesProvider>
     </AuthenticationProvider>
   );
 }

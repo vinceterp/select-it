@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from 'react-native'
-import { useBareAuth } from '../../../contexts'
+import { useBareAuth, useUserPref } from '../../../contexts'
 import { COLORS, styles } from '../../../styles'
 import { Input, Button } from '../../atoms'
 import { NavigationProp } from '@react-navigation/native'
@@ -16,7 +16,7 @@ export interface Properties {
 }
 
 export default function LoginBox({ navigation }: Properties) {
-  const darkMode = false
+  const { darkMode } = useUserPref();
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 

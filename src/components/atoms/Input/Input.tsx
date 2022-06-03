@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextInput, TextInputProps, View } from 'react-native'
+import { useUserPref } from '../../../contexts'
 import { COLORS, styles } from '../../../styles'
 
 export interface InputProperties extends TextInputProps {
@@ -9,7 +10,7 @@ export interface InputProperties extends TextInputProps {
 }
 
 export default function Input(properties: InputProperties) {
-  const darkMode = false
+  const { darkMode } = useUserPref();
   const { value, onChangeText } = properties
   return (
     <View style={styles.app({ ...properties, darkMode }).inputContainer}>
