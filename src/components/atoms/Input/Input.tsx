@@ -1,17 +1,17 @@
-import React from 'react'
-import { TextInput, TextInputProps, View } from 'react-native'
-import { useUserPref } from '../../../contexts'
-import { COLORS, styles } from '../../../styles'
+import React from 'react';
+import { TextInput, TextInputProps, View } from 'react-native';
+import { useUserPref } from '../../../contexts';
+import { COLORS, styles } from '../../../styles';
 
 export interface InputProperties extends TextInputProps {
-  value: string
-  onChangeText: (newText: string) => void
-  round?: boolean
+  value: string;
+  onChangeText: (newText: string) => void;
+  round?: boolean;
 }
 
 export default function Input(properties: InputProperties) {
   const { darkMode } = useUserPref();
-  const { value, onChangeText } = properties
+  const { value, onChangeText } = properties;
   return (
     <View style={styles.app({ ...properties, darkMode }).inputContainer}>
       <TextInput
@@ -22,5 +22,5 @@ export default function Input(properties: InputProperties) {
         onChangeText={onChangeText}
       ></TextInput>
     </View>
-  )
+  );
 }

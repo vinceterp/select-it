@@ -1,2 +1,2 @@
-export { styles } from './styles'
-export { COLORS } from './colors'
+export { styles } from './styles';
+export { COLORS } from './colors';

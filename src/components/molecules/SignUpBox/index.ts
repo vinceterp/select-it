@@ -1,1 +1,1 @@
-export { default as SignUpBox } from './SignUpBox'
+export { default as SignUpBox } from './SignUpBox';

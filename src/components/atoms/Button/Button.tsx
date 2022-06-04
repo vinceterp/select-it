@@ -1,22 +1,22 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 import {
   TouchableOpacity,
   TouchableOpacityProps,
   Text,
   View,
-} from 'react-native'
-import { useUserPref } from '../../../contexts'
-import { COLORS, styles } from '../../../styles'
-import { Label } from '../Label'
+} from 'react-native';
+import { useUserPref } from '../../../contexts';
+import { COLORS, styles } from '../../../styles';
+import { Label } from '../Label';
 
 export interface ButtonProperties extends TouchableOpacityProps {
-  buttonTheme: 'login' | 'sso-button' | 'primary'
-  title: string
-  icon?: ReactNode
+  buttonTheme: 'login' | 'sso-button' | 'primary';
+  title: string;
+  icon?: ReactNode;
 }
 
 export default function Button(properties: ButtonProperties) {
-  const { buttonTheme, title, icon } = properties
+  const { buttonTheme, title, icon } = properties;
   const { darkMode } = useUserPref();
 
   switch (buttonTheme) {
@@ -28,7 +28,7 @@ export default function Button(properties: ButtonProperties) {
         >
           <Label label={title} size="S" />
         </TouchableOpacity>
-      )
+      );
     case 'sso-button':
       return (
         <TouchableOpacity
@@ -49,11 +49,11 @@ export default function Button(properties: ButtonProperties) {
             <Label label={title} size="S" color={COLORS.BLACK} />
           </View>
         </TouchableOpacity>
-      )
+      );
     case 'primary':
-      return <></>
+      return <></>;
     default:
       //return primary button here
-      return <></>
+      return <></>;
   }
 }

@@ -1,12 +1,12 @@
-import { NavigationProp } from '@react-navigation/native'
-import React from 'react'
-import { View, Image, ImageBackground } from 'react-native'
-import { useUserPref } from '../../../contexts'
-import { styles } from '../../../styles'
-import { SignUpBox } from '../../molecules'
+import { NavigationProp } from '@react-navigation/native';
+import React from 'react';
+import { View, Image, ImageBackground } from 'react-native';
+import { useUserPref } from '../../../contexts';
+import { styles } from '../../../styles';
+import { SignUpBox } from '../../molecules';
 
 export interface Properties {
-  navigation: NavigationProp<any, any>
+  navigation: NavigationProp<any, any>;
 }
 
 export default function Signup({ navigation }: Properties) {
@@ -27,5 +27,5 @@ export default function Signup({ navigation }: Properties) {
         <SignUpBox navigation={navigation} />
       </View>
     </ImageBackground>
-  )
+  );
 }

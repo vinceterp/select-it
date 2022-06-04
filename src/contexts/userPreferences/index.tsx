@@ -1,38 +1,49 @@
-import { createContext, ReactNode, useContext, useState } from "react";
-import { useToggle } from "../../hooks";
+import { createContext, ReactNode, useContext } from 'react';
+import { useToggle } from '../../hooks';
 
 export const initialUserPreferencesContext = {
-    alarmNotification: false,
-    toggleAlarmNotification: () => {},
-    darkMode: false,
-    toggleDarkMode: () => {},
-}
+  alarmNotification: false,
+  toggleAlarmNotification: () => {},
+  darkMode: false,
+  toggleDarkMode: () => {},
+};
 
 export interface UserPreferencesContextType {
-    alarmNotification: boolean;
-    darkMode: boolean;
-    toggleDarkMode: (bool?: boolean) => void;
-    toggleAlarmNotification: (bool?: boolean) => void;
+  alarmNotification: boolean;
+  darkMode: boolean;
+  toggleDarkMode: (bool?: boolean) => void;
+  toggleAlarmNotification: (bool?: boolean) => void;
 }
 
-export const UserPreferencesContext = createContext<UserPreferencesContextType>({
+export const UserPreferencesContext = createContext<UserPreferencesContextType>(
+  {
     alarmNotification: initialUserPreferencesContext.alarmNotification,
     darkMode: initialUserPreferencesContext.darkMode,
     toggleDarkMode: initialUserPreferencesContext.toggleDarkMode,
-    toggleAlarmNotification: initialUserPreferencesContext.toggleAlarmNotification
-});
+    toggleAlarmNotification:
+      initialUserPreferencesContext.toggleAlarmNotification,
+  }
+);
 
-export const UserPreferencesProvider = ({ children }: { children: ReactNode }) => {
-    const [ darkMode, toggleDarkMode ] = useToggle(false);
-    const [ alarmNotification, toggleAlarmNotification ] = useToggle(false);
-    const contextValue: UserPreferencesContextType = { darkMode, toggleDarkMode, alarmNotification, toggleAlarmNotification };
+export const UserPreferencesProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  const [darkMode, toggleDarkMode] = useToggle(false);
+  const [alarmNotification, toggleAlarmNotification] = useToggle(false);
+  const contextValue: UserPreferencesContextType = {
+    darkMode,
+    toggleDarkMode,
+    alarmNotification,
+    toggleAlarmNotification,
+  };
 
-    return (
-        <UserPreferencesContext.Provider value={contextValue} >
-            {children}
-        </UserPreferencesContext.Provider>
-    );
-    
+  return (
+    <UserPreferencesContext.Provider value={contextValue}>
+      {children}
+    </UserPreferencesContext.Provider>
+  );
 };
 
 export const useUserPref = () => useContext(UserPreferencesContext);

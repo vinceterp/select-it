@@ -1,7 +1,7 @@
-import { Asset } from 'expo-asset'
+import { Asset } from 'expo-asset';
 
 export function useCacheResources(): {
-  cacheResources: () => Promise<Asset[]>
+  cacheResources: () => Promise<Asset[]>;
 } {
   const cacheResources = () => {
     const images = [
@@ -9,22 +9,14 @@ export function useCacheResources(): {
       require('../../assets/select_it_logo.png'),
       require('../../assets/google_icon.png'),
       require('../../assets/facebook_icon.png'),
-      require('../../assets/home_icon.png'),
-      require('../../assets/addsound_icon.png'),
-      require('../../assets/help_icon.png'),
-      require('../../assets/settings_icon.png'),
-      require('../../assets/home_icon_focused.png'),
-      require('../../assets/addsound_icon_focused.png'),
-      require('../../assets/help_icon_focused.png'),
-      require('../../assets/settings_icon_focused.png'),
       require('../../assets/sg_logo.png'),
-    ]
+    ];
 
     const cacheImages = images.map((image) => {
-      return Asset.fromModule(image).downloadAsync()
-    })
-    return Promise.all(cacheImages)
-  }
+      return Asset.fromModule(image).downloadAsync();
+    });
+    return Promise.all(cacheImages);
+  };
 
-  return { cacheResources }
+  return { cacheResources };
 }
