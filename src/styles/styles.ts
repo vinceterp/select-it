@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { COLORS } from './colors'
+import { StyleSheet } from 'react-native';
+import { COLORS } from './colors';
 
 export const styles = {
   app: (styleProperties: any) =>
@@ -15,11 +15,13 @@ export const styles = {
         width: 328,
         borderRadius: 20,
         alignSelf: 'center',
-        backgroundColor: styleProperties.darkMode ? COLORS.NAVBAR_BACKGROUND_DARK : COLORS.NAVBAR_BACKGROUND_GREY,
+        backgroundColor: styleProperties.darkMode
+          ? COLORS.NAVBAR_BACKGROUND_DARK
+          : COLORS.NAVBAR_BACKGROUND_GREY,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       bottomNavIcon: {
         height: 22,
@@ -28,7 +30,7 @@ export const styles = {
       bottomNavButton: {
         flexDirection: 'column',
         alignItems: 'center',
-        flex: 1
+        flex: 1,
       },
       inputContainer: {
         display: 'flex',
@@ -140,13 +142,13 @@ export const styles = {
         shadowRadius: 4,
       },
       carouselItemContainer: {
-        backgroundColor: COLORS.WHITE, 
-        borderRadius: 20, 
-        height: '90%', 
-        width: '100%', 
-        padding: 5, 
-        display: 'flex', 
-        alignItems: 'center', 
+        backgroundColor: COLORS.WHITE,
+        borderRadius: 20,
+        height: '90%',
+        width: '100%',
+        padding: 5,
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
         shadowColor: COLORS.BLACK,
         shadowOffset: { width: 6, height: 6 },
@@ -165,6 +167,6 @@ export const styles = {
       carouselImage: {
         height: '90%',
         width: '90%',
-      }
+      },
     }),
-}
+};

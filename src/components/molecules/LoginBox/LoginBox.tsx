@@ -1,36 +1,36 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import {
   View,
   Text,
   Image,
   TouchableHighlight,
   TouchableOpacity,
-} from 'react-native'
-import { useBareAuth, useUserPref } from '../../../contexts'
-import { COLORS, styles } from '../../../styles'
-import { Input, Button } from '../../atoms'
-import { NavigationProp } from '@react-navigation/native'
+} from 'react-native';
+import { useBareAuth, useUserPref } from '../../../contexts';
+import { COLORS, styles } from '../../../styles';
+import { Input, Button } from '../../atoms';
+import { NavigationProp } from '@react-navigation/native';
 
 export interface Properties {
-  navigation: NavigationProp<any, any>
+  navigation: NavigationProp<any, any>;
 }
 
 export default function LoginBox({ navigation }: Properties) {
   const { darkMode } = useUserPref();
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const { userData, setUserData } = useBareAuth()
+  const { userData, setUserData } = useBareAuth();
 
   const handleUsername = (newText: string) => {
-    setUsername(newText)
-  }
+    setUsername(newText);
+  };
   const handlePassword = (newText: string) => {
-    setPassword(newText)
-  }
+    setPassword(newText);
+  };
   const setFimiToken = (token: string) => {
-    setUserData({ ...userData, token })
-  }
+    setUserData({ ...userData, token });
+  };
 
   return (
     <View style={styles.app({ darkMode }).loginBoxContainer}>
@@ -118,5 +118,5 @@ export default function LoginBox({ navigation }: Properties) {
         </TouchableOpacity>
       </View>
     </View>
-  )
+  );
 }

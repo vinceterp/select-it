@@ -1,8 +1,6 @@
-import React from 'react'
-import { Home } from '../Home'
+import React from 'react';
+import { Home } from '../Home';
 
 export default function AddSound() {
-  return (
-    <Home />
-  )
+  return <Home />;
 }

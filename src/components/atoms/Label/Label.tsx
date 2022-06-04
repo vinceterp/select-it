@@ -1,17 +1,17 @@
-import { Text } from 'react-native'
-import { useUserPref } from '../../../contexts'
-import { COLORS, styles } from '../../../styles'
+import { Text } from 'react-native';
+import { useUserPref } from '../../../contexts';
+import { COLORS, styles } from '../../../styles';
 
 export interface Properties {
-  label: string
-  size: 'XS' | 'S' | 'M' | 'L'
-  color?: string
+  label: string;
+  size: 'XS' | 'S' | 'M' | 'L';
+  color?: string;
 }
 
 export default function Label({ label, size, color }: Properties) {
   const { darkMode } = useUserPref();
 
-  let fontSize: number
+  let fontSize: number;
   switch (size) {
     case 'XS':
       fontSize = 12;
@@ -37,5 +37,5 @@ export default function Label({ label, size, color }: Properties) {
     >
       {label}
     </Text>
-  )
+  );
 }

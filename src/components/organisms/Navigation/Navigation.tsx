@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import React, { useCallback, useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { useBareAuth } from '../../../contexts'
+import { useBareAuth } from '../../../contexts';
 
 import { unathenticatedRoute, authenticatedRoute } from '../../../routes';
-import { BottomNavBar, Carousel } from '../../molecules'
-import { View } from 'react-native'
+import { BottomNavBar, Carousel } from '../../molecules';
+import { View } from 'react-native';
 
-const AuthStack = createNativeStackNavigator()
+const AuthStack = createNativeStackNavigator();
 
 const AuthFlow = () => (
   <AuthStack.Navigator screenOptions={{ headerShown: false }}>
@@ -20,24 +20,34 @@ const AuthFlow = () => (
           name={route.name}
           component={route.component}
         />
-      )
+      );
     })}
   </AuthStack.Navigator>
-)
+);
 
-const LandingBottomTabNav = createBottomTabNavigator()
+const LandingBottomTabNav = createBottomTabNavigator();
 
 const LandingFlow = () => {
   const [activeScreenIndex, setActiveScreenIndex] = useState<number>(0);
-  const updateScreenIndex = useCallback((index: number) => {
-    setActiveScreenIndex(index);
-  }, [setActiveScreenIndex]);
+  const updateScreenIndex = useCallback(
+    (index: number) => {
+      setActiveScreenIndex(index);
+    },
+    [setActiveScreenIndex]
+  );
   return (
     <View style={{ flex: 1 }}>
       <Carousel />
-      <LandingBottomTabNav.Navigator 
+      <LandingBottomTabNav.Navigator
         screenOptions={{ headerShown: false }}
-        tabBar={(props) => <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} activeScreenIndex={activeScreenIndex} setActiveScreenIndex={updateScreenIndex}/>}
+        tabBar={(props) => (
+          <BottomNavBar
+            {...props}
+            authenticatedRoute={authenticatedRoute}
+            activeScreenIndex={activeScreenIndex}
+            setActiveScreenIndex={updateScreenIndex}
+          />
+        )}
       >
         {authenticatedRoute.map((route, indx) => {
           return (
@@ -46,23 +56,23 @@ const LandingFlow = () => {
               name={route.name}
               component={route.component}
             />
-          )
+          );
         })}
       </LandingBottomTabNav.Navigator>
     </View>
   );
-}
+};
 
 export default function Navigation() {
-  const { userData } = useBareAuth()
+  const { userData } = useBareAuth();
 
   useEffect(() => {
-    console.info(userData)
-  }, [userData])
+    console.info(userData);
+  }, [userData]);
 
   return (
     <NavigationContainer>
       {userData.token === '' ? <AuthFlow /> : <LandingFlow />}
     </NavigationContainer>
-  )
+  );
 }
