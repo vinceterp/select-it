@@ -13,6 +13,7 @@ export interface ButtonProperties extends TouchableOpacityProps {
   buttonTheme: 'login' | 'sso-button' | 'primary';
   title: string;
   icon?: ReactNode;
+  width?: string | number;
 }
 
 export default function Button(properties: ButtonProperties) {
@@ -45,15 +46,39 @@ export default function Button(properties: ButtonProperties) {
               justifyContent: 'center',
             }}
           >
-            <View style={styles.app({}).buttonIconContainer}>{icon}</View>
+            {icon && (
+              <View style={styles.app({}).buttonIconContainer}>{icon}</View>
+            )}
             <Label label={title} size="S" color={COLORS.BLACK} />
           </View>
         </TouchableOpacity>
       );
     case 'primary':
-      return <></>;
-    default:
-      //return primary button here
-      return <></>;
+      return (
+        <View style={styles.app({}).primaryButtonContainer}>
+          <TouchableOpacity
+            style={styles.app({ ...properties, darkMode }).primaryButton}
+            {...properties}
+          >
+            <View
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: icon ? 'flex-start' : 'center',
+              }}
+            >
+              {icon && (
+                <View style={styles.app({}).primaryButtonIconContainer}>
+                  {icon}
+                </View>
+              )}
+              <Label label={title} size="XS" color={COLORS.WHITE} />
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
   }
 }
