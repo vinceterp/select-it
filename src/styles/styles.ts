@@ -149,7 +149,7 @@ export const styles = {
       primaryButtonIconContainer: {
         height: '100%',
         width: 40,
-        marginRight: 10,
+        marginRight: 5,
         borderRadius: 45 / 2,
         backgroundColor: COLORS.PRIMARY_BLUE_ACCENT,
         display: 'flex',
