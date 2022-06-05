@@ -82,13 +82,13 @@ export default function Settings({ navigation }: Properties) {
         title="Pair Device"
         onPress={() => console.warn('pair device')}
         buttonTheme="primary"
-        icon={<Icon name="Plus" fill={COLORS.WHITE}/>}
+        icon={<Icon name="Plus" fill={COLORS.WHITE} />}
       />
       <Button
         title="Edit Background"
         onPress={() => console.warn('edit background')}
         buttonTheme="primary"
-        icon={<Icon name='Edit' fill={COLORS.WHITE}/>}
+        icon={<Icon name="Edit" fill={COLORS.WHITE} />}
       />
       <View style={{ height: 35 }} />
       <Button
