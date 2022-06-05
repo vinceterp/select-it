@@ -4,7 +4,7 @@ import { Switch, TouchableOpacity, View } from 'react-native';
 import { useBareAuth, useUserPref } from '../../../contexts';
 import { useToggle } from '../../../hooks';
 import { COLORS, styles } from '../../../styles';
-import { Label, Button } from '../../atoms';
+import { Label, Button, Icon } from '../../atoms';
 
 export interface Properties {
   navigation: NavigationProp<any, any>;
@@ -78,7 +78,25 @@ export default function Settings({ navigation }: Properties) {
           />
         </TouchableOpacity>
       </View>
-      <Button title="Logout" onPress={logout} buttonTheme="login" />
+      <Button
+        title="Pair Device"
+        onPress={() => console.warn('pair device')}
+        buttonTheme="primary"
+        icon={<Icon name="Plus" fill={COLORS.WHITE}/>}
+      />
+      <Button
+        title="Edit Background"
+        onPress={() => console.warn('edit background')}
+        buttonTheme="primary"
+        icon={<Icon name='Edit' fill={COLORS.WHITE}/>}
+      />
+      <View style={{ height: 35 }} />
+      <Button
+        title="Change Password"
+        onPress={() => console.warn('change password')}
+        buttonTheme="primary"
+      />
+      <Button title="Sign Out" onPress={logout} buttonTheme="primary" />
     </View>
   );
 }

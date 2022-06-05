@@ -7,7 +7,6 @@ const SettingsSvg = (properties: SvgProps) => (
     viewBox="0 0 201 201"
     height={styles.app({}).smallImage.height}
     width={styles.app({}).smallImage.width}
-    fill={properties.fill ? properties.fill : COLORS.SECONDARY_GREY}
     {...properties}
   >
     <G clip-path="url(#clip0_450_26)">
