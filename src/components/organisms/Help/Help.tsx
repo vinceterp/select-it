@@ -21,7 +21,7 @@ export default function Help({ navigation }: Properties) {
         <View
           style={{
             backgroundColor: COLORS.WHITE,
-            height: '85%',
+            height: '90%',
             borderRadius: 30,
             padding: '5%',
             alignItems: 'center',

@@ -67,7 +67,6 @@ export default function Button(properties: ButtonProperties) {
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: icon ? 'flex-start' : 'center',
               }}
             >
               {icon && (
@@ -75,7 +74,9 @@ export default function Button(properties: ButtonProperties) {
                   {icon}
                 </View>
               )}
-              <Label label={title} size="XS" color={COLORS.WHITE} />
+              <View style={{ flex: 1, alignItems: 'center', marginRight: icon ? 6 : 0 }}>
+                <Label label={title} size="XS" color={COLORS.WHITE} marginLeft='auto' />
+              </View>
             </View>
           </TouchableOpacity>
         </View>
