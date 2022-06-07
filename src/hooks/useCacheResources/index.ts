@@ -10,6 +10,7 @@ export function useCacheResources(): {
       require('../../assets/google_icon.png'),
       require('../../assets/facebook_icon.png'),
       require('../../assets/sg_logo.png'),
+      require('../../assets/userBackground_A.png'),
     ];
 
     const cacheImages = images.map((image) => {
