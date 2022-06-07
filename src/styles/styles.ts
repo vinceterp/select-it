@@ -17,7 +17,7 @@ export const styles = {
         alignSelf: 'center',
         backgroundColor: styleProperties.darkMode
           ? COLORS.NAVBAR_BACKGROUND_DARK
-          : COLORS.NAVBAR_BACKGROUND_GREY,
+          : COLORS.TERTIARY_GREY,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -47,7 +47,7 @@ export const styles = {
         borderRadius: styleProperties.round ? 25 : 10,
         padding: 10,
         backgroundColor: styleProperties.darkMode
-          ? COLORS.NAVBAR_BACKGROUND_GREY
+          ? COLORS.TERTIARY_GREY
           : COLORS.WHITE,
       },
       loginContainer: {
