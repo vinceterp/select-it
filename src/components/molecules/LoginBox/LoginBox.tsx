@@ -10,7 +10,6 @@ import { useBareAuth, useUserPref } from '../../../contexts';
 import { COLORS, styles } from '../../../styles';
 import { Input, Button } from '../../atoms';
 import { NavigationProp } from '@react-navigation/native';
-import {BlurView} from '@react-native-community/blur';
 
 export interface Properties {
   navigation: NavigationProp<any, any>;
@@ -34,7 +33,7 @@ export default function LoginBox({ navigation }: Properties) {
   };
 
   return (
-    <BlurView blurRadius={2} blurAmount={20} blurType="dark" style={styles.app({ darkMode }).loginBoxContainer}>
+    <View style={styles.app({ darkMode }).loginBoxContainer}>
       <Input
         value={username}
         placeholder="Username"
@@ -118,6 +117,6 @@ export default function LoginBox({ navigation }: Properties) {
           </Text>
         </TouchableOpacity>
       </View>
-    </BlurView>
+    </View>
   );
 }
