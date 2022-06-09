@@ -21,7 +21,7 @@ export default function Help({ navigation }: Properties) {
       <View style={{ width: '100%', padding: '5%', height: '80%' }}>
         <View
           style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            backgroundColor: darkMode ? 'rgba(18, 18, 18, 0.95)' : 'rgba(255, 255, 255, 0.95)',
             height: '90%',
             borderRadius: 30,
             padding: '5%',
@@ -32,7 +32,7 @@ export default function Help({ navigation }: Properties) {
             <Label
               label="Frequently Asked Questions"
               size="L"
-              color={COLORS.BLACK}
+              color={ darkMode ? COLORS.WHITE : COLORS.BLACK}
             />
             <FaqSection />
           </View>
