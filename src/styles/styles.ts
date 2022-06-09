@@ -170,7 +170,7 @@ export const styles = {
         shadowOpacity: 0.5,
         shadowRadius: 4,
         marginBottom: 35,
-        borderWidth: styleProperties.darkMode ? 2 : 0,
+        borderWidth: styleProperties.darkMode ? 3 : 0,
         borderColor: styleProperties.darkMode ? COLORS.PRIMARY_BLUE : 'none',
       },
       carouselItemContainer: {
