@@ -37,8 +37,12 @@ export default function Help({ navigation }: Properties) {
           <Button
             buttonTheme="primary"
             title="Contact Us"
-            onPress={() => Linking.openURL('whatsapp://send?text=hello, i have a question&phone=18765472621')}
-            icon={<Icon name="Chat" fill={COLORS.WHITE} />}
+            onPress={() =>
+              Linking.openURL(
+                'whatsapp://send?text=hello, i have a question&phone=18765472621'
+              )
+            }
+            icon={<Icon name="Whatsapp" fill={COLORS.WHITE} />}
           />
         </View>
       </View>

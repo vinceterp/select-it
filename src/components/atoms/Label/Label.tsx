@@ -31,8 +31,11 @@ export default function Label({ label, size, color, marginLeft }: Properties) {
   return (
     <Text
       style={{
-        ...styles.app({ darkMode, basicTextColor: color ?? COLORS.WHITE, marginLeft })
-          .basicText,
+        ...styles.app({
+          darkMode,
+          basicTextColor: color ?? COLORS.WHITE,
+          marginLeft,
+        }).basicText,
         fontSize,
       }}
     >
