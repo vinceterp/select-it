@@ -74,8 +74,14 @@ export default function Button(properties: ButtonProperties) {
                   {icon}
                 </View>
               )}
-              <View style={{ flex: 1, alignItems: 'center', marginRight: icon ? 6 : 0 }}>
-                <Label label={title} size="XS" color={COLORS.WHITE} marginLeft='auto' />
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  marginRight: icon ? 6 : 0,
+                }}
+              >
+                <Label label={title} size="XS" color={COLORS.WHITE} />
               </View>
             </View>
           </TouchableOpacity>

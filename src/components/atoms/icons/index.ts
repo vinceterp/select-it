@@ -5,3 +5,5 @@ export { default as Home } from './Home';
 export { default as Plus } from './Plus';
 export { default as Edit } from './Edit';
 export { default as Chat } from './Chat';
+export { default as Whatsapp } from './Whatsapp';
+export { default as Chevron } from './Chevron';

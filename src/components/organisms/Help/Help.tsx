@@ -4,6 +4,7 @@ import { ImageBackground, Linking, View } from 'react-native';
 import { useUserPref } from '../../../contexts';
 import { COLORS, styles } from '../../../styles';
 import { Button, Icon, Label } from '../../atoms';
+import { FaqSection } from '../../molecules';
 
 export interface Properties {
   navigation: NavigationProp<any, any>;
@@ -27,18 +28,23 @@ export default function Help({ navigation }: Properties) {
             alignItems: 'center',
           }}
         >
-          <View style={{ flex: 1, width: '100%' }}>
+          <View style={{ flex: 1, width: '100%', marginBottom: 20 }}>
             <Label
               label="Frequently Asked Questions"
               size="L"
               color={COLORS.BLACK}
             />
+            <FaqSection />
           </View>
           <Button
             buttonTheme="primary"
             title="Contact Us"
-            onPress={() => Linking.openURL('whatsapp://send?text=hello, i have a question&phone=18765472621')}
-            icon={<Icon name="Chat" fill={COLORS.WHITE} />}
+            onPress={() =>
+              Linking.openURL(
+                'whatsapp://send?text=hello, i have a question&phone=18765472621'
+              )
+            }
+            icon={<Icon name="Whatsapp" />}
           />
         </View>
       </View>
