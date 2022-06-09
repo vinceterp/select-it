@@ -20,7 +20,7 @@ export default function Help({ navigation }: Properties) {
       <View style={{ width: '100%', padding: '5%', height: '80%' }}>
         <View
           style={{
-            backgroundColor: COLORS.WHITE,
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
             height: '90%',
             borderRadius: 30,
             padding: '5%',

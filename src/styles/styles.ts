@@ -69,7 +69,7 @@ export const styles = {
         width: '90%',
         marginTop: 49,
         borderRadius: 20,
-        backgroundColor: `${COLORS.LOGIN_BACKGROUND}85`,
+        backgroundColor: 'rgba(11,11,11,1)',
         zIndex: 0,
         alignItems: 'center',
         padding: 20,
