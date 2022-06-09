@@ -156,7 +156,7 @@ export const styles = {
         justifyContent: 'center',
       },
       settingsToggleBox: {
-        backgroundColor: styleProperties.darkMode ? COLORS.WHITE : COLORS.WHITE,
+        backgroundColor: styleProperties.darkMode ? COLORS.DARK_MODE : COLORS.WHITE,
         minHeight: 120,
         height: 'auto',
         padding: 20,
@@ -168,6 +168,8 @@ export const styles = {
         shadowOpacity: 0.5,
         shadowRadius: 4,
         marginBottom: 35,
+        borderWidth: styleProperties.darkMode ? 2 : 0,
+        borderColor: styleProperties.darkMode ? COLORS.PRIMARY_BLUE : 'none',
       },
       carouselItemContainer: {
         backgroundColor: COLORS.WHITE,

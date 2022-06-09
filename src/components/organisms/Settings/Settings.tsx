@@ -22,7 +22,7 @@ export default function Settings({ navigation }: Properties) {
   return (
     <View
       style={{
-        backgroundColor: COLORS.PRIMARY_GREY,
+        backgroundColor: darkMode ? COLORS.DARK_MODE : COLORS.PRIMARY_GREY,
         flex: 1,
         alignItems: 'center',
         margin: 0,
@@ -45,7 +45,7 @@ export default function Settings({ navigation }: Properties) {
           <Label
             label="Alarm Notification"
             size="M"
-            color={COLORS.SECONDARY_GREY}
+            color={ darkMode ? COLORS.WHITE : COLORS.SECONDARY_GREY}
           />
           <Switch
             value={alarmNotification}
@@ -67,7 +67,7 @@ export default function Settings({ navigation }: Properties) {
             height: 30,
           }}
         >
-          <Label label="Dark Mode" size="M" color={COLORS.SECONDARY_GREY} />
+          <Label label="Dark Mode" size="M" color={ darkMode ? COLORS.WHITE : COLORS.SECONDARY_GREY} />
           <Switch
             value={darkMode}
             onValueChange={() => toggleDarkMode()}

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
+import { useUserPref } from '../../../contexts';
 import { COLORS } from '../../../styles';
 import { Icon, Label } from '../../atoms';
 
@@ -27,6 +28,7 @@ const faqs: FAQType[] = [
 export default function Faq() {
   const [activeSections, setActiveSections] = useState<number[]>([]);
   const [activeSectionIndex, setActiveSectionIndex] = useState<number>(-1);
+  const { darkMode } = useUserPref();
 
   const updateSections = useCallback(
     (_activeSections: number[]) => {
@@ -90,10 +92,10 @@ export default function Faq() {
           alignItems: 'center',
         }}
       >
-        <Label label={section.content} style={{ marginLeft: 15 }} size="S" color={COLORS.BLACK} />
+        <Label label={section.content} style={{ marginLeft: 15 }} size="S" color={darkMode ? COLORS.WHITE : COLORS.BLACK} />
       </View>
     );
-  }, []);
+  }, [darkMode]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
