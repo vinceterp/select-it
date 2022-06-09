@@ -90,7 +90,7 @@ export default function Faq() {
           alignItems: 'center',
         }}
       >
-        <Label label={section.title} size="S" color={COLORS.BLACK} />
+        <Label label={section.content} style={{ marginLeft: 15 }} size="S" color={COLORS.BLACK} />
       </View>
     );
   }, []);
