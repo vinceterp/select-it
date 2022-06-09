@@ -5,13 +5,15 @@ import * as Icons from '../icons';
 
 interface Properties extends SvgProps {
   name: keyof typeof Icons;
+  rotation?: number;
 }
 
 export const Icon: FunctionComponent<Properties> = ({
   name,
+  transform,
   ...rest
 }: Properties): ReactElement<Properties> => {
   const Component = Icons[name];
 
-  return <Component {...rest} />;
+  return <Component {...rest} transform={transform} />;
 };

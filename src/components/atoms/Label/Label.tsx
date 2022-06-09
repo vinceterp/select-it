@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { Text, TextStyle } from 'react-native';
 import { useUserPref } from '../../../contexts';
 import { COLORS, styles } from '../../../styles';
 
@@ -6,10 +6,10 @@ export interface Properties {
   label: string;
   size: 'XS' | 'S' | 'M' | 'L';
   color?: string;
-  marginLeft?: string;
+  style?: TextStyle;
 }
 
-export default function Label({ label, size, color, marginLeft }: Properties) {
+export default function Label({ label, size, color, style }: Properties) {
   const { darkMode } = useUserPref();
 
   let fontSize: number;
@@ -34,9 +34,9 @@ export default function Label({ label, size, color, marginLeft }: Properties) {
         ...styles.app({
           darkMode,
           basicTextColor: color ?? COLORS.WHITE,
-          marginLeft,
         }).basicText,
         fontSize,
+        ...style,
       }}
     >
       {label}

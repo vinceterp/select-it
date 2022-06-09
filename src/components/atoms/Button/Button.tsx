@@ -81,12 +81,7 @@ export default function Button(properties: ButtonProperties) {
                   marginRight: icon ? 6 : 0,
                 }}
               >
-                <Label
-                  label={title}
-                  size="XS"
-                  color={COLORS.WHITE}
-                  marginLeft="auto"
-                />
+                <Label label={title} size="XS" color={COLORS.WHITE} />
               </View>
             </View>
           </TouchableOpacity>
