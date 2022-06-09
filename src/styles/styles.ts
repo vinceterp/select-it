@@ -156,7 +156,9 @@ export const styles = {
         justifyContent: 'center',
       },
       settingsToggleBox: {
-        backgroundColor: styleProperties.darkMode ? COLORS.DARK_MODE : COLORS.WHITE,
+        backgroundColor: styleProperties.darkMode
+          ? COLORS.DARK_MODE
+          : COLORS.WHITE,
         minHeight: 120,
         height: 'auto',
         padding: 20,

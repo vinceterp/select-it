@@ -82,20 +82,28 @@ export default function Faq() {
     [activeSections, activeSectionIndex]
   );
 
-  const renderContent = useCallback((section: FAQType) => {
-    return (
-      <View
-        style={{
-          flexDirection: 'row',
-          marginLeft: 10,
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-        }}
-      >
-        <Label label={section.content} style={{ marginLeft: 15 }} size="S" color={darkMode ? COLORS.WHITE : COLORS.BLACK} />
-      </View>
-    );
-  }, [darkMode]);
+  const renderContent = useCallback(
+    (section: FAQType) => {
+      return (
+        <View
+          style={{
+            flexDirection: 'row',
+            marginLeft: 10,
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+        >
+          <Label
+            label={section.content}
+            style={{ marginLeft: 15 }}
+            size="S"
+            color={darkMode ? COLORS.WHITE : COLORS.BLACK}
+          />
+        </View>
+      );
+    },
+    [darkMode]
+  );
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
