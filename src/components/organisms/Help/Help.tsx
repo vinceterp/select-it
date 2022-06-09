@@ -1,6 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
-import { ImageBackground, View } from 'react-native';
+import { ImageBackground, Linking, View } from 'react-native';
 import { useUserPref } from '../../../contexts';
 import { COLORS, styles } from '../../../styles';
 import { Button, Icon, Label } from '../../atoms';
@@ -20,8 +20,8 @@ export default function Help({ navigation }: Properties) {
       <View style={{ width: '100%', padding: '5%', height: '80%' }}>
         <View
           style={{
-            backgroundColor: COLORS.WHITE,
-            height: '85%',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            height: '90%',
             borderRadius: 30,
             padding: '5%',
             alignItems: 'center',
@@ -37,6 +37,7 @@ export default function Help({ navigation }: Properties) {
           <Button
             buttonTheme="primary"
             title="Contact Us"
+            onPress={() => Linking.openURL('whatsapp://send?text=hello, i have a question&phone=18765472621')}
             icon={<Icon name="Chat" fill={COLORS.WHITE} />}
           />
         </View>

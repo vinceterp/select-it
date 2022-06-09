@@ -6,9 +6,10 @@ export interface Properties {
   label: string;
   size: 'XS' | 'S' | 'M' | 'L';
   color?: string;
+  marginLeft?: string;
 }
 
-export default function Label({ label, size, color }: Properties) {
+export default function Label({ label, size, color, marginLeft }: Properties) {
   const { darkMode } = useUserPref();
 
   let fontSize: number;
@@ -30,7 +31,7 @@ export default function Label({ label, size, color }: Properties) {
   return (
     <Text
       style={{
-        ...styles.app({ darkMode, basicTextColor: color ?? COLORS.WHITE })
+        ...styles.app({ darkMode, basicTextColor: color ?? COLORS.WHITE, marginLeft })
           .basicText,
         fontSize,
       }}

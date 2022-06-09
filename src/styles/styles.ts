@@ -69,7 +69,7 @@ export const styles = {
         width: '90%',
         marginTop: 49,
         borderRadius: 20,
-        backgroundColor: `${COLORS.LOGIN_BACKGROUND}85`,
+        backgroundColor: 'rgba(11,11,11,0.7)',
         zIndex: 0,
         alignItems: 'center',
         padding: 20,
@@ -120,7 +120,7 @@ export const styles = {
         color: styleProperties.basicTextColor ?? COLORS.WHITE,
         fontSize: 15,
         fontFamily: 'Roboto',
-        margin: 0,
+        margin: styleProperties.margin ?? 0,
         padding: 0,
       },
       mediumImageContainer: {
@@ -149,7 +149,6 @@ export const styles = {
       primaryButtonIconContainer: {
         height: '100%',
         width: 40,
-        marginRight: 5,
         borderRadius: 45 / 2,
         backgroundColor: COLORS.PRIMARY_BLUE_ACCENT,
         display: 'flex',
