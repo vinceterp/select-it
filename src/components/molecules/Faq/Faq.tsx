@@ -13,7 +13,7 @@ export interface FAQType {
 const faqs: FAQType[] = [
   {
     title: 'How do I upload a song?',
-    content: 'Content for how to upload a song',
+    content: 'Navigation Bar > Add Sound',
   },
   {
     title: 'Why don’t I get a notification when my car alarms?',
@@ -21,7 +21,7 @@ const faqs: FAQType[] = [
   },
   {
     title: 'How do I change my password?',
-    content: 'Content for how to change your password',
+    content: 'Settings > Change Password',
   },
 ];
 
