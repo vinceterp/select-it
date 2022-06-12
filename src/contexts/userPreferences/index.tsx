@@ -6,6 +6,8 @@ export const initialUserPreferencesContext = {
   toggleAlarmNotification: () => {},
   darkMode: false,
   toggleDarkMode: () => {},
+  addSoundOverlay: false,
+  toggleAddSoundOverlay: () => {},
 };
 
 export interface UserPreferencesContextType {
@@ -13,6 +15,8 @@ export interface UserPreferencesContextType {
   darkMode: boolean;
   toggleDarkMode: (bool?: boolean) => void;
   toggleAlarmNotification: (bool?: boolean) => void;
+  addSoundOverlay: boolean;
+  toggleAddSoundOverlay: (bool?: boolean) => void;
 }
 
 export const UserPreferencesContext = createContext<UserPreferencesContextType>(
@@ -22,6 +26,8 @@ export const UserPreferencesContext = createContext<UserPreferencesContextType>(
     toggleDarkMode: initialUserPreferencesContext.toggleDarkMode,
     toggleAlarmNotification:
       initialUserPreferencesContext.toggleAlarmNotification,
+    addSoundOverlay: initialUserPreferencesContext.addSoundOverlay,
+    toggleAddSoundOverlay: initialUserPreferencesContext.toggleAddSoundOverlay,
   }
 );
 
@@ -32,11 +38,15 @@ export const UserPreferencesProvider = ({
 }) => {
   const [darkMode, toggleDarkMode] = useToggle(false);
   const [alarmNotification, toggleAlarmNotification] = useToggle(false);
+  const [addSoundOverlay, toggleAddSoundOverlay] = useToggle(false);
+
   const contextValue: UserPreferencesContextType = {
     darkMode,
     toggleDarkMode,
     alarmNotification,
     toggleAlarmNotification,
+    addSoundOverlay,
+    toggleAddSoundOverlay,
   };
 
   return (

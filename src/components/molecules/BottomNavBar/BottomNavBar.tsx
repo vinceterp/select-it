@@ -79,54 +79,52 @@ export default function BottomNavBar({
   setActiveScreenIndex,
   ...rest
 }: Properties) {
-  const { darkMode } = useUserPref();
-
+  const { darkMode, addSoundOverlay, toggleAddSoundOverlay } = useUserPref();
   const { navigation } = rest;
-
-  // Define the below values in a context
-  const overlayOpen = true;
-  const showAddSoundOverlay = () => console.warn('Showing overlay');
+  const showAddSoundOverlay = () => toggleAddSoundOverlay(true);
 
   const onNavPress = useCallback(
     (index: number, route: string) => {
       setActiveScreenIndex(index);
       navigation?.navigate(route, {});
-      if (route === 'Add Sound') {
-        if (!overlayOpen) {
-          //do nothing
-        } else {
-          showAddSoundOverlay();
-        }
+      if (route === 'Add Sound' && !addSoundOverlay) {
+        showAddSoundOverlay();
+      }else{
+        toggleAddSoundOverlay(false);
       }
     },
-    [setActiveScreenIndex]
+    [setActiveScreenIndex, toggleAddSoundOverlay, addSoundOverlay]
   );
+
+  const renderNavItems = useCallback(() => {
+    return authenticatedRoute.map((route: Route, index: number) => {
+      const isFocused = activeScreenIndex === index;
+      return (
+        <TouchableOpacity
+          key={`navItem${index}`}
+          onPress={() => onNavPress(index, route.name)}
+          style={styles.app({}).bottomNavButton}
+        >
+          {renderNavIcon(route.name, darkMode, isFocused)}
+          <Label
+            label={route.name}
+            size="XS"
+            color={
+              isFocused
+                ? COLORS.SECONDARY_BLUE
+                : darkMode
+                ? COLORS.WHITE
+                : COLORS.SECONDARY_GREY
+            }
+          />
+        </TouchableOpacity>
+      );
+    })
+  }, [addSoundOverlay, darkMode, activeScreenIndex, onNavPress, navigation]);
 
   return (
     <View style={styles.app({ darkMode }).bottomNavBar}>
-      {authenticatedRoute.map((route: Route, index: number) => {
-        const isFocused = activeScreenIndex === index;
-        return (
-          <TouchableOpacity
-            key={`navItem${index}`}
-            onPress={() => onNavPress(index, route.name)}
-            style={styles.app({}).bottomNavButton}
-          >
-            {renderNavIcon(route.name, darkMode, isFocused)}
-            <Label
-              label={route.name}
-              size="XS"
-              color={
-                isFocused
-                  ? COLORS.SECONDARY_BLUE
-                  : darkMode
-                  ? COLORS.WHITE
-                  : COLORS.SECONDARY_GREY
-              }
-            />
-          </TouchableOpacity>
-        );
-      })}
+      {renderNavItems()}
     </View>
   );
 }

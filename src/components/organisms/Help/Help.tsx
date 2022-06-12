@@ -11,7 +11,7 @@ export interface Properties {
 }
 
 export default function Help({ navigation }: Properties) {
-  const { darkMode } = useUserPref();
+  const { darkMode, addSoundOverlay } = useUserPref();
   return (
     <ImageBackground
       resizeMode="cover"

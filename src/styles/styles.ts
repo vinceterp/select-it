@@ -173,6 +173,16 @@ export const styles = {
         borderWidth: styleProperties.darkMode ? 3 : 0,
         borderColor: styleProperties.darkMode ? COLORS.PRIMARY_BLUE : 'none',
       },
+      carouselContainer: {
+        display: 'flex',
+        padding: 0,
+        height: '65%',
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+      },
+
       carouselItemContainer: {
         backgroundColor: COLORS.WHITE,
         borderRadius: 20,
