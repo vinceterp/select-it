@@ -55,6 +55,7 @@ const LandingFlow = () => {
               key={`${route.name}${indx}`}
               name={route.name}
               component={route.component}
+              initialParams={{activeScreenIndex}}
             />
           );
         })}

@@ -16,7 +16,7 @@ const data = [
 ];
 
 export default function MyCarousel() {
-  const carouselRef= useRef<Carousel<any>>(null);
+  const carouselRef = useRef<Carousel<any>>(null);
   const renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
       <View style={styles.app({}).carouselItemContainer}>
@@ -40,7 +40,7 @@ export default function MyCarousel() {
         justifyContent: 'center',
       }}
     >
-      <View style={{display: 'flex', padding: 0, height: '65%', marginTop: 20, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+      <View style={styles.app({}).carouselContainer}>
         <Carousel
           data={data}
           renderItem={(props) => renderItem(props)}
