@@ -13,4 +13,5 @@ export const COLORS = {
   BLACK: '#000000',
   RED: '#FF4E77',
   DARK_MODE: '#121212',
+  ADD_SOUND_PANEL: 'EEEEEE',
 };

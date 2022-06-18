@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { useUserPref } from '../../../contexts';
+import { useNavContext, useUserPref } from '../../../contexts';
 import { Route } from '../../../routes';
 import { COLORS, styles } from '../../../styles';
 import { Icon, Label } from '../../atoms';
@@ -67,19 +67,16 @@ const renderNavIcon = (
 };
 
 export interface Properties {
-  activeScreenIndex: number;
-  setActiveScreenIndex: (screenIndex: number) => void;
   navigation?: any;
   authenticatedRoute: any;
 }
 
 export default function BottomNavBar({
   authenticatedRoute,
-  activeScreenIndex,
-  setActiveScreenIndex,
   ...rest
 }: Properties) {
   const { darkMode, addSoundOverlay, toggleAddSoundOverlay } = useUserPref();
+  const { activeScreenIndex, setActiveScreenIndex } = useNavContext();
   const { navigation } = rest;
   const showAddSoundOverlay = () => toggleAddSoundOverlay(true);
 
@@ -89,7 +86,7 @@ export default function BottomNavBar({
       navigation?.navigate(route, {});
       if (route === 'Add Sound' && !addSoundOverlay) {
         showAddSoundOverlay();
-      }else{
+      } else {
         toggleAddSoundOverlay(false);
       }
     },
@@ -119,7 +116,7 @@ export default function BottomNavBar({
           />
         </TouchableOpacity>
       );
-    })
+    });
   }, [addSoundOverlay, darkMode, activeScreenIndex, onNavPress, navigation]);
 
   return (

@@ -4,7 +4,7 @@ import { Navigation } from "./src/components/organisms";
 import { styles } from "./src/styles/styles";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
-import { AuthenticationProvider, UserPreferencesProvider, useUserPref } from "./src/contexts";
+import { AuthenticationProvider, UserPreferencesProvider, useUserPref, NavProvider } from "./src/contexts";
 import { useCacheResources } from "./src/hooks";
 
 export default function App() {
@@ -44,12 +44,14 @@ export default function App() {
   return (
     <AuthenticationProvider>
       <UserPreferencesProvider>
-        <View
-          onLayout={onLayoutRootView}
-          style={styles.app({ darkMode }).container}
-        >
-          <Navigation />
-        </View>
+        <NavProvider>
+          <View
+            onLayout={onLayoutRootView}
+            style={styles.app({ darkMode }).container}
+          >
+            <Navigation />
+          </View>
+        </NavProvider>
       </UserPreferencesProvider>
     </AuthenticationProvider>
   );

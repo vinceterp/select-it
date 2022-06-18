@@ -28,25 +28,13 @@ const AuthFlow = () => (
 const LandingBottomTabNav = createBottomTabNavigator();
 
 const LandingFlow = () => {
-  const [activeScreenIndex, setActiveScreenIndex] = useState<number>(0);
-  const updateScreenIndex = useCallback(
-    (index: number) => {
-      setActiveScreenIndex(index);
-    },
-    [setActiveScreenIndex]
-  );
   return (
     <View style={{ flex: 1 }}>
       <Carousel />
       <LandingBottomTabNav.Navigator
         screenOptions={{ headerShown: false }}
         tabBar={(props) => (
-          <BottomNavBar
-            {...props}
-            authenticatedRoute={authenticatedRoute}
-            activeScreenIndex={activeScreenIndex}
-            setActiveScreenIndex={updateScreenIndex}
-          />
+          <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} />
         )}
       >
         {authenticatedRoute.map((route, indx) => {
@@ -55,7 +43,6 @@ const LandingFlow = () => {
               key={`${route.name}${indx}`}
               name={route.name}
               component={route.component}
-              initialParams={{activeScreenIndex}}
             />
           );
         })}
