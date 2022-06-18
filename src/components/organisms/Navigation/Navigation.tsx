@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { useBareAuth } from '../../../contexts';
+import { useBareAuth, useNavContext } from '../../../contexts';
 
 import { unathenticatedRoute, authenticatedRoute } from '../../../routes';
 import { BottomNavBar, Carousel } from '../../molecules';
@@ -53,9 +53,11 @@ const LandingFlow = () => {
 
 export default function Navigation() {
   const { userData } = useBareAuth();
+  const { setActiveScreenIndex } = useNavContext();
 
   useEffect(() => {
     console.info(userData);
+    setActiveScreenIndex(0);
   }, [userData]);
 
   return (
