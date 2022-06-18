@@ -1,52 +1,65 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ImageBackground } from 'react-native';
 import { COLORS, styles } from '../../../styles';
-import { useUserPref } from '../../../contexts';
+import { useNavContext, useUserPref } from '../../../contexts';
 import { AddSoundPanel } from '../../molecules';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { NavigationProp } from '@react-navigation/native';
 
-export default function AddSound({activeScreenIndex, navigation}: {activeScreenIndex: number, navigation: NavigationProp<any>}) {
-
-  const { darkMode, addSoundOverlay } = useUserPref();
+export default function AddSound({
+  navigation,
+}: {
+  navigation: NavigationProp<any>;
+}) {
+  const { darkMode, addSoundOverlay, toggleAddSoundOverlay } = useUserPref();
   const refRBSheet = useRef<RBSheet>(null);
+
+  const { setActiveScreenIndex } = useNavContext();
+
+  const closeAddSoundOverlay = useCallback(() => {
+    navigation.navigate('Home');
+    setActiveScreenIndex(0);
+    toggleAddSoundOverlay(false);
+  }, [navigation, setActiveScreenIndex, toggleAddSoundOverlay]);
 
   useEffect(() => {
     if (addSoundOverlay) {
       refRBSheet.current?.open();
-    }else{
+    } else {
       refRBSheet.current?.close();
     }
   }, [addSoundOverlay]);
-  console.log(activeScreenIndex)
   return (
     <ImageBackground
       resizeMode="cover"
       style={styles.app({ darkMode }).loginContainer}
       source={require('../../../assets/userBackground_A.png')}
     >
-      {/* <View style={{ width: '100%', padding: '5%', height: '80%' }}></View> */}
       <RBSheet
         ref={refRBSheet}
         closeOnDragDown={true}
         closeOnPressMask={true}
-        animationType="fade"
+        animationType="slide"
         onClose={() => {
-          if (addSoundOverlay){
-            navigation.navigate("Home");
-          }else{
-            console.log('close')
-
+          if (addSoundOverlay) {
+            closeAddSoundOverlay();
+          } else {
           }
         }}
         customStyles={{
+          container: {
+            height: '90%',
+            backgroundColor: darkMode ? COLORS.DARK_MODE : '#EEEEEE',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
           wrapper: {
-            backgroundColor: "transparent",
+            backgroundColor: 'none',
           },
           draggableIcon: {
-            backgroundColor: COLORS.SECONDARY_GREY
-          }
+            backgroundColor: COLORS.SECONDARY_GREY,
+          },
         }}
       >
         <AddSoundPanel />

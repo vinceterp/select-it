@@ -1,1 +1,1 @@
-export { default as AddSoundPanel} from './AddSoundPanel'; 
+export { default as AddSoundPanel } from './AddSoundPanel';
