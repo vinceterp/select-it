@@ -56,7 +56,6 @@ export default function Navigation() {
   const { setActiveScreenIndex } = useNavContext();
 
   useEffect(() => {
-    console.info(userData);
     setActiveScreenIndex(0);
   }, [userData]);
 

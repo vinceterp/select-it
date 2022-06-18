@@ -7,7 +7,9 @@ import * as DocumentPicker from 'expo-document-picker';
 export default function AddSoundPanel() {
   const selectFile = useCallback(async () => {
     const file = await DocumentPicker.getDocumentAsync({ multiple: false });
-    console.log(file);
+    if (file.type === 'success') {
+    } else if (file.type === 'cancel') {
+    }
   }, []);
 
   return (
