@@ -61,11 +61,9 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
         justifyContent: 'center',
       }}
     >
-      <Modal isVisible={errorModalStatus}>
-        <View style={{ flex: 1 }}>
-          <Text onPress={() => toggleErrorModal(false)}>
-            I am the modal content!
-          </Text>
+      <Modal isVisible={errorModalStatus} useNativeDriver>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <Label label="Im the modal content" size="M" color={COLORS.WHITE}  onPress={() => toggleErrorModal(false)} />
         </View>
       </Modal>
       {!audioUploaded ? (
