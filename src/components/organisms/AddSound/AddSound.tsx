@@ -62,7 +62,7 @@ export default function AddSound({
           },
         }}
       >
-        <AddSoundPanel />
+        <AddSoundPanel closeAddSoundOverlay={closeAddSoundOverlay} />
       </RBSheet>
     </ImageBackground>
   );

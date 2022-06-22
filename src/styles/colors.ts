@@ -14,4 +14,5 @@ export const COLORS = {
   RED: '#FF4E77',
   DARK_MODE: '#121212',
   ADD_SOUND_PANEL: 'EEEEEE',
+  LINK_FILL: '#004EF6',
 };
