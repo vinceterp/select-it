@@ -122,6 +122,10 @@ export const styles = {
         fontFamily: 'Roboto',
         margin: styleProperties.margin ?? 0,
         padding: 0,
+        textDecorationColor: styleProperties.underline
+          ? styleProperties.basicTextColor
+          : COLORS.WHITE,
+        textDecorationLine: styleProperties.underline ? 'underline' : 'none',
       },
       mediumImageContainer: {
         display: 'flex',

@@ -7,9 +7,16 @@ export interface Properties {
   size: 'XS' | 'S' | 'M' | 'L';
   color?: string;
   style?: TextStyle;
+  underline?: boolean;
 }
 
-export default function Label({ label, size, color, style }: Properties) {
+export default function Label({
+  label,
+  size,
+  color,
+  style,
+  underline,
+}: Properties) {
   const { darkMode } = useUserPref();
 
   let fontSize: number;
@@ -34,6 +41,7 @@ export default function Label({ label, size, color, style }: Properties) {
         ...styles.app({
           darkMode,
           basicTextColor: color ?? COLORS.WHITE,
+          underline,
         }).basicText,
         fontSize,
         ...style,
