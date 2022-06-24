@@ -61,14 +61,12 @@ export const UserPreferencesProvider = ({
   const [alarmNotification, toggleAlarmNotification] = useToggle(false);
   const [addSoundOverlay, toggleAddSoundOverlay] = useToggle(false);
 
-  const getUserMediaPermissions = async () => {
-    const permissions = await MediaLibrary.getPermissionsAsync();
-    return permissions as MediaLibrary.PermissionResponse;
+  const getUserMediaPermissions = () => {
+    return MediaLibrary.getPermissionsAsync();
   };
 
-  const requestMediaPermissions = async () => {
-    const permissions = await MediaLibrary.requestPermissionsAsync();
-    return permissions;
+  const requestMediaPermissions = () => {
+    return MediaLibrary.requestPermissionsAsync();
   };
 
   const contextValue: UserPreferencesContextType = {
