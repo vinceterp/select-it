@@ -12,7 +12,8 @@ export interface Properties {
 }
 
 export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
-  const { darkMode } = useUserPref();
+  const { darkMode, getUserMediaPermissions, requestMediaPermissions } =
+    useUserPref();
   const [audioUploaded, setAudioUploaded] = useState<boolean>(false);
   const [errorModalStatus, toggleErrorModal] = useToggle(false);
 
@@ -25,6 +26,19 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
       } else {
         toggleErrorModal(true);
       }
+    }
+  }, [toggleErrorModal, setAudioUploaded]);
+
+  const handleChooseFile = useCallback(async () => {
+    const permissions = await getUserMediaPermissions();
+    if (!permissions.granted) {
+      const { status, canAskAgain } = await requestMediaPermissions();
+      if (status === 'granted') {
+        selectFile();
+      }
+    }
+    if (permissions.granted) {
+      selectFile();
     }
   }, []);
 
@@ -62,16 +76,38 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
       }}
     >
       <Modal isVisible={errorModalStatus} useNativeDriver>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <Label label="Im the modal content" size="M" color={COLORS.WHITE}  onPress={() => toggleErrorModal(false)} />
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <View
+            style={{
+              backgroundColor: darkMode ? COLORS.DARK_MODE : COLORS.WHITE,
+              height: 'auto',
+              padding: '5%',
+              width: '80%',
+              borderRadius: 15,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Label
+              label="Please choose an mp3 file"
+              size="M"
+              color={darkMode ? COLORS.WHITE : COLORS.SECONDARY_GREY}
+            />
+            <TouchableOpacity onPress={() => toggleErrorModal(false)}>
+              <Label label="Close" size="M" color="red" />
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
       {!audioUploaded ? (
         <Button
           buttonTheme="primary"
           icon={<Icon name="Plus" fill={COLORS.WHITE} />}
-          title="Choose file"
-          onPress={() => selectFile()}
+          title="Choose Mp3"
+          onPress={() => handleChooseFile()}
         />
       ) : (
         renderAddSoundPanel()
