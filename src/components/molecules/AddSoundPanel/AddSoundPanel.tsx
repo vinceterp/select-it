@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Platform } from 'react-native';
 import { COLORS } from '../../../styles';
 import { Button, Icon, Label } from '../../atoms';
+import * as MediaLibrary from 'expo-media-library';
 import * as DocumentPicker from 'expo-document-picker';
 import { useUserPref } from '../../../contexts';
 import Modal from 'react-native-modal';
@@ -16,23 +17,35 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
     useUserPref();
   const [audioUploaded, setAudioUploaded] = useState<boolean>(false);
   const [errorModalStatus, toggleErrorModal] = useToggle(false);
+  let { OS: platform } = Platform;
 
   const selectFile = useCallback(async () => {
-    const file = await DocumentPicker.getDocumentAsync({ multiple: false });
-    if (file.type === 'success') {
-      const fileType = file.name.split('.')[1];
-      if (fileType === 'mp3') {
-        setAudioUploaded(true);
-      } else {
-        toggleErrorModal(true);
+    if (platform === 'ios') {
+      const file = await DocumentPicker.getDocumentAsync({ multiple: false });
+      console.info(file);
+      if (file.type === 'success') {
+        const fileType = file.name.split('.')[1];
+        if (fileType === 'mp3') {
+          setAudioUploaded(true);
+        } else {
+          toggleErrorModal(true);
+        }
       }
+    } else if (platform === 'android') {
+      let assets = await MediaLibrary.getAssetsAsync({ mediaType: 'audio' });
+      assets = await MediaLibrary.getAssetsAsync({
+        mediaType: 'audio',
+        first: assets.totalCount,
+      });
+      console.log(assets.assets.length);
     }
   }, [toggleErrorModal, setAudioUploaded]);
 
   const handleChooseFile = useCallback(async () => {
     const permissions = await getUserMediaPermissions();
+    console.info(permissions);
     if (!permissions.granted) {
-      const { status, canAskAgain } = await requestMediaPermissions();
+      const { status } = await requestMediaPermissions();
       if (status === 'granted') {
         selectFile();
       }
@@ -63,6 +76,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
             <Label size="M" label="Cancel" color={COLORS.LINK_FILL} underline />
           </TouchableOpacity>
         </View>
+        //This is where the trimmer will be
       </View>
     );
   }, [darkMode, closeAddSoundOverlay]);
