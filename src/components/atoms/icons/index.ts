@@ -7,3 +7,4 @@ export { default as Edit } from './Edit';
 export { default as Chat } from './Chat';
 export { default as Whatsapp } from './Whatsapp';
 export { default as Chevron } from './Chevron';
+export { default as Play } from './Play';
