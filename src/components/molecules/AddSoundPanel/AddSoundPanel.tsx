@@ -4,7 +4,7 @@ import { COLORS } from '../../../styles';
 import { Button, Icon, Label } from '../../atoms';
 import * as MediaLibrary from 'expo-media-library';
 import * as DocumentPicker from 'expo-document-picker';
-import { useUserPref } from '../../../contexts';
+import { useAudioContext, useUserPref } from '../../../contexts';
 import Modal from 'react-native-modal';
 import { useToggle } from '../../../hooks';
 
@@ -13,11 +13,14 @@ export interface Properties {
 }
 
 export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
-  const { darkMode, getUserMediaPermissions, requestMediaPermissions } =
-    useUserPref();
+  const { darkMode } = useUserPref();
+  const { permissions } = useAudioContext();
   const [audioUploaded, setAudioUploaded] = useState<boolean>(false);
   const [errorModalStatus, toggleErrorModal] = useToggle(false);
-  let { OS: platform } = Platform;
+  const [errorMessage, setErrorMessage] = useState<string>(
+    'Please choose an mp3 file'
+  );
+  const { OS: platform } = Platform;
 
   const selectFile = useCallback(async () => {
     if (platform === 'ios') {
@@ -37,21 +40,16 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
         mediaType: 'audio',
         first: assets.totalCount,
       });
-      console.log(assets.assets.length);
+      console.log(assets.assets);
     }
   }, [toggleErrorModal, setAudioUploaded]);
 
-  const handleChooseFile = useCallback(async () => {
-    const permissions = await getUserMediaPermissions();
-    console.info(permissions);
-    if (!permissions.granted) {
-      const { status } = await requestMediaPermissions();
-      if (status === 'granted') {
-        selectFile();
-      }
-    }
-    if (permissions.granted) {
+  const handleChooseFile = useCallback(() => {
+    if (permissions && permissions.granted) {
       selectFile();
+    } else {
+      setErrorMessage('Please give the app permission to access media files');
+      toggleErrorModal(true);
     }
   }, []);
 
@@ -76,7 +74,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
             <Label size="M" label="Cancel" color={COLORS.LINK_FILL} underline />
           </TouchableOpacity>
         </View>
-        //This is where the trimmer will be
+        {/* //This is where the trimmer will be */}
       </View>
     );
   }, [darkMode, closeAddSoundOverlay]);
@@ -106,7 +104,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
             }}
           >
             <Label
-              label="Please choose an mp3 file"
+              label={errorMessage}
               size="M"
               color={darkMode ? COLORS.WHITE : COLORS.SECONDARY_GREY}
             />

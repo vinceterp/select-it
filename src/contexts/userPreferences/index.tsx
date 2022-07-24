@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { useToggle } from '../../hooks';
-import * as MediaLibrary from 'expo-media-library';
 
 export const initialUserPreferencesContext = {
   alarmNotification: false,
@@ -9,20 +8,6 @@ export const initialUserPreferencesContext = {
   toggleDarkMode: () => {},
   addSoundOverlay: false,
   toggleAddSoundOverlay: () => {},
-  getUserMediaPermissions: () =>
-    Promise.resolve({
-      canAskAgain: true,
-      status: MediaLibrary.PermissionStatus.UNDETERMINED,
-      expires: 'never',
-      granted: false,
-    } as MediaLibrary.PermissionResponse),
-  requestMediaPermissions: () =>
-    Promise.resolve({
-      canAskAgain: true,
-      status: MediaLibrary.PermissionStatus.UNDETERMINED,
-      expires: 'never',
-      granted: false,
-    } as MediaLibrary.PermissionResponse),
 };
 
 export interface UserPreferencesContextType {
@@ -32,8 +17,6 @@ export interface UserPreferencesContextType {
   toggleAlarmNotification: (bool?: boolean) => void;
   addSoundOverlay: boolean;
   toggleAddSoundOverlay: (bool?: boolean) => void;
-  getUserMediaPermissions: () => Promise<MediaLibrary.PermissionResponse>;
-  requestMediaPermissions: () => Promise<MediaLibrary.PermissionResponse>;
 }
 
 export const UserPreferencesContext = createContext<UserPreferencesContextType>(
@@ -45,10 +28,6 @@ export const UserPreferencesContext = createContext<UserPreferencesContextType>(
       initialUserPreferencesContext.toggleAlarmNotification,
     addSoundOverlay: initialUserPreferencesContext.addSoundOverlay,
     toggleAddSoundOverlay: initialUserPreferencesContext.toggleAddSoundOverlay,
-    getUserMediaPermissions:
-      initialUserPreferencesContext.getUserMediaPermissions,
-    requestMediaPermissions:
-      initialUserPreferencesContext.requestMediaPermissions,
   }
 );
 
@@ -61,14 +40,6 @@ export const UserPreferencesProvider = ({
   const [alarmNotification, toggleAlarmNotification] = useToggle(false);
   const [addSoundOverlay, toggleAddSoundOverlay] = useToggle(false);
 
-  const getUserMediaPermissions = () => {
-    return MediaLibrary.getPermissionsAsync();
-  };
-
-  const requestMediaPermissions = () => {
-    return MediaLibrary.requestPermissionsAsync();
-  };
-
   const contextValue: UserPreferencesContextType = {
     darkMode,
     toggleDarkMode,
@@ -76,8 +47,6 @@ export const UserPreferencesProvider = ({
     toggleAlarmNotification,
     addSoundOverlay,
     toggleAddSoundOverlay,
-    getUserMediaPermissions,
-    requestMediaPermissions,
   };
 
   return (
