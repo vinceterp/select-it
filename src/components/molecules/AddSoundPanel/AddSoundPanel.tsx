@@ -31,6 +31,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
         if (fileType === 'mp3') {
           setAudioUploaded(true);
         } else {
+          setErrorMessage('Please choose an mp3 file');
           toggleErrorModal(true);
         }
       }
