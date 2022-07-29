@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { useBareAuth, useNavContext } from '../../../contexts';
+import { AudioProvider, useBareAuth, useNavContext } from '../../../contexts';
 
 import { unathenticatedRoute, authenticatedRoute } from '../../../routes';
 import { BottomNavBar, Carousel } from '../../molecules';
@@ -29,25 +29,27 @@ const LandingBottomTabNav = createBottomTabNavigator();
 
 const LandingFlow = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <Carousel />
-      <LandingBottomTabNav.Navigator
-        screenOptions={{ headerShown: false }}
-        tabBar={(props) => (
-          <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} />
-        )}
-      >
-        {authenticatedRoute.map((route, indx) => {
-          return (
-            <LandingBottomTabNav.Screen
-              key={`${route.name}${indx}`}
-              name={route.name}
-              component={route.component}
-            />
-          );
-        })}
-      </LandingBottomTabNav.Navigator>
-    </View>
+    <AudioProvider>
+      <View style={{ flex: 1 }}>
+        <Carousel />
+        <LandingBottomTabNav.Navigator
+          screenOptions={{ headerShown: false }}
+          tabBar={(props) => (
+            <BottomNavBar {...props} authenticatedRoute={authenticatedRoute} />
+          )}
+        >
+          {authenticatedRoute.map((route, indx) => {
+            return (
+              <LandingBottomTabNav.Screen
+                key={`${route.name}${indx}`}
+                name={route.name}
+                component={route.component}
+              />
+            );
+          })}
+        </LandingBottomTabNav.Navigator>
+      </View>
+    </AudioProvider>
   );
 };
 

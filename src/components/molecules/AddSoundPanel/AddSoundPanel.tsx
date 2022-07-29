@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { TouchableOpacity, View, Platform } from 'react-native';
 import { COLORS } from '../../../styles';
-import { Button, Icon, Label } from '../../atoms';
+import { Button, Icon, Input, Label } from '../../atoms';
 import * as MediaLibrary from 'expo-media-library';
 import * as DocumentPicker from 'expo-document-picker';
-import { useUserPref } from '../../../contexts';
+import { useAudioContext, useUserPref } from '../../../contexts';
 import Modal from 'react-native-modal';
 import { useToggle } from '../../../hooks';
 
@@ -13,45 +13,59 @@ export interface Properties {
 }
 
 export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
-  const { darkMode, getUserMediaPermissions, requestMediaPermissions } =
-    useUserPref();
+  const { darkMode } = useUserPref();
+  const { permissions } = useAudioContext();
   const [audioUploaded, setAudioUploaded] = useState<boolean>(false);
   const [errorModalStatus, toggleErrorModal] = useToggle(false);
-  let { OS: platform } = Platform;
+  const [songTitle, setSongTitle] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>(
+    'Please choose an mp3 file'
+  );
+  // const { OS: platform } = Platform;
 
   const selectFile = useCallback(async () => {
-    if (platform === 'ios') {
-      const file = await DocumentPicker.getDocumentAsync({ multiple: false });
-      console.info(file);
-      if (file.type === 'success') {
-        const fileType = file.name.split('.')[1];
-        if (fileType === 'mp3') {
-          setAudioUploaded(true);
-        } else {
-          toggleErrorModal(true);
-        }
+    const file = await DocumentPicker.getDocumentAsync({
+      multiple: false,
+      copyToCacheDirectory: false,
+    });
+    console.info(file);
+    if (file.type === 'success') {
+      const fileType = file.name.split('.')[1];
+      if (fileType === 'mp3') {
+        setAudioUploaded(true);
+      } else {
+        setErrorMessage('Please choose an mp3 file');
+        toggleErrorModal(true);
       }
-    } else if (platform === 'android') {
-      let assets = await MediaLibrary.getAssetsAsync({ mediaType: 'audio' });
-      assets = await MediaLibrary.getAssetsAsync({
-        mediaType: 'audio',
-        first: assets.totalCount,
-      });
-      console.log(assets.assets.length);
     }
+    // if (platform === 'ios') {
+    //   const file = await DocumentPicker.getDocumentAsync({ multiple: false });
+    //   console.info(file);
+    //   if (file.type === 'success') {
+    //     const fileType = file.name.split('.')[1];
+    //     if (fileType === 'mp3') {
+    //       setAudioUploaded(true);
+    //     } else {
+    //       setErrorMessage('Please choose an mp3 file');
+    //       toggleErrorModal(true);
+    //     }
+    //   }
+    // } else if (platform === 'android') {
+    //   let assets = await MediaLibrary.getAssetsAsync({ mediaType: 'audio' });
+    //   assets = await MediaLibrary.getAssetsAsync({
+    //     mediaType: 'audio',
+    //     first: assets.totalCount,
+    //   });
+    //   console.log(assets.assets);
+    // }
   }, [toggleErrorModal, setAudioUploaded]);
 
-  const handleChooseFile = useCallback(async () => {
-    const permissions = await getUserMediaPermissions();
-    console.info(permissions);
-    if (!permissions.granted) {
-      const { status } = await requestMediaPermissions();
-      if (status === 'granted') {
-        selectFile();
-      }
-    }
-    if (permissions.granted) {
+  const handleChooseFile = useCallback(() => {
+    if (permissions && permissions.granted) {
       selectFile();
+    } else {
+      setErrorMessage('Please give the app permission to access media files');
+      toggleErrorModal(true);
     }
   }, []);
 
@@ -76,10 +90,74 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
             <Label size="M" label="Cancel" color={COLORS.LINK_FILL} underline />
           </TouchableOpacity>
         </View>
-        //This is where the trimmer will be
+        <View
+          style={{
+            display: 'flex',
+            width: 145,
+            height: 145,
+            borderRadius: 15,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginBottom: 20,
+            backgroundColor: COLORS.PRIMARY_GREY,
+          }}
+        ></View>
+        <View
+          style={{
+            width: '60%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+        >
+          <Input
+            placeholder="Tuesday Alarm"
+            value={songTitle}
+            onChangeText={(newText: string) => setSongTitle(newText)}
+          />
+        </View>
+        <View
+          style={{
+            height: 70,
+            borderWidth: 1,
+            borderColor: 'red',
+            marginBottom: 20,
+          }}
+        >
+          {/* Trimmer area */}
+        </View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            height: 70,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '80%',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: COLORS.PRIMARY_BLUE_ACCENT,
+              display: 'flex',
+              height: 48,
+              width: 48,
+              borderRadius: 24,
+            }}
+          >
+            <Icon name="Play" fill={COLORS.WHITE} />
+          </View>
+          <Button
+            buttonTheme="primary"
+            title="Add Sound"
+            icon={<Icon name="AddSound" fill={COLORS.WHITE} />}
+            onPress={() => closeAddSoundOverlay()}
+          />
+        </View>
       </View>
     );
-  }, [darkMode, closeAddSoundOverlay]);
+  }, [darkMode, closeAddSoundOverlay, songTitle]);
 
   return (
     <View
@@ -106,7 +184,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
             }}
           >
             <Label
-              label="Please choose an mp3 file"
+              label={errorMessage}
               size="M"
               color={darkMode ? COLORS.WHITE : COLORS.SECONDARY_GREY}
             />

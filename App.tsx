@@ -45,12 +45,12 @@ export default function App() {
     <AuthenticationProvider>
       <UserPreferencesProvider>
         <NavProvider>
-          <View
-            onLayout={onLayoutRootView}
-            style={styles.app({ darkMode }).container}
-          >
-            <Navigation />
-          </View>
+            <View
+              onLayout={onLayoutRootView}
+              style={styles.app({ darkMode }).container}
+            >
+              <Navigation />
+            </View>
         </NavProvider>
       </UserPreferencesProvider>
     </AuthenticationProvider>

@@ -78,14 +78,13 @@ export default function BottomNavBar({
   const { darkMode, addSoundOverlay, toggleAddSoundOverlay } = useUserPref();
   const { activeScreenIndex, setActiveScreenIndex } = useNavContext();
   const { navigation } = rest;
-  const showAddSoundOverlay = () => toggleAddSoundOverlay(true);
 
   const onNavPress = useCallback(
     (index: number, route: string) => {
       setActiveScreenIndex(index);
       navigation?.navigate(route, {});
       if (route === 'Add Sound' && !addSoundOverlay) {
-        showAddSoundOverlay();
+        toggleAddSoundOverlay(true);
       } else {
         toggleAddSoundOverlay(false);
       }
