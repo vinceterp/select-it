@@ -11,15 +11,12 @@ export interface InputProperties extends TextInputProps {
 
 export default function Input(properties: InputProperties) {
   const { darkMode } = useUserPref();
-  const { value, onChangeText } = properties;
   return (
     <View style={styles.app({ ...properties, darkMode }).inputContainer}>
       <TextInput
         {...properties}
         placeholderTextColor={`${COLORS.BLACK}30`}
         style={styles.app({ ...properties, darkMode }).input}
-        value={value}
-        onChangeText={onChangeText}
       ></TextInput>
     </View>
   );

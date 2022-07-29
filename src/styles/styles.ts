@@ -106,7 +106,7 @@ export const styles = {
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.5,
         shadowRadius: 2,
-        marginBottom: 15,
+        marginBottom: styleProperties.marginBottom ?? 0,
       },
       buttonText: {
         fontFamily: 'Roboto',

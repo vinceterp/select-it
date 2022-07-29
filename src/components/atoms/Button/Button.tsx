@@ -14,10 +14,11 @@ export interface ButtonProperties extends TouchableOpacityProps {
   title: string;
   icon?: ReactNode;
   width?: string | number;
+  marginBottom?: number;
 }
 
 export default function Button(properties: ButtonProperties) {
-  const { buttonTheme, title, icon } = properties;
+  const { buttonTheme, title, icon, marginBottom } = properties;
   const { darkMode } = useUserPref();
 
   switch (buttonTheme) {
@@ -55,7 +56,7 @@ export default function Button(properties: ButtonProperties) {
       );
     case 'primary':
       return (
-        <View style={styles.app({}).primaryButtonContainer}>
+        <View style={styles.app({ marginBottom }).primaryButtonContainer}>
           <TouchableOpacity
             style={styles.app({ ...properties, darkMode }).primaryButton}
             {...properties}

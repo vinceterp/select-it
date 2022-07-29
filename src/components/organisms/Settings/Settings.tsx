@@ -87,6 +87,7 @@ export default function Settings({ navigation }: Properties) {
         onPress={() => console.warn('pair device')}
         buttonTheme="primary"
         icon={<Icon name="Plus" fill={COLORS.WHITE} />}
+        marginBottom={15}
       />
       <Button
         title="Edit Background"
@@ -99,6 +100,7 @@ export default function Settings({ navigation }: Properties) {
         title="Change Password"
         onPress={() => console.warn('change password')}
         buttonTheme="primary"
+        marginBottom={15}
       />
       <Button title="Sign Out" onPress={logout} buttonTheme="primary" />
     </View>
