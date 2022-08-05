@@ -2,11 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { TouchableOpacity, View, Platform } from 'react-native';
 import { COLORS } from '../../../styles';
 import { Button, Icon, Input, Label } from '../../atoms';
-import * as MediaLibrary from 'expo-media-library';
 import * as DocumentPicker from 'expo-document-picker';
 import { useAudioContext, useUserPref } from '../../../contexts';
 import Modal from 'react-native-modal';
 import { useToggle } from '../../../hooks';
+// import MusicFiles from 'react-native-get-music-files';
 
 export interface Properties {
   closeAddSoundOverlay: () => void;
@@ -17,6 +17,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
   const { permissions } = useAudioContext();
   const [audioUploaded, setAudioUploaded] = useState<boolean>(false);
   const [errorModalStatus, toggleErrorModal] = useToggle(false);
+  const [playing, togglePlaying] = useToggle(false);
   const [songTitle, setSongTitle] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>(
     'Please choose an mp3 file'
@@ -24,6 +25,20 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
   // const { OS: platform } = Platform;
 
   const selectFile = useCallback(async () => {
+    // MusicFiles.getAll({
+    //   blured : true, // works only when 'cover' is set to true
+    //   artist : true,
+    //   duration : true, //default : true
+    //   genre : true,
+    //   title : true,
+    //   cover : true,
+    //   minimumSongDuration : 10000, // get songs bigger than 10000 miliseconds duration,
+    //   fields : ['title','albumTitle','genre','lyrics','artwork','duration'] // for iOs Version
+    // }).then(tracks => {
+    //   console.info(tracks);
+    // }).catch(error => {
+    //   console.error(error);
+    // });
     const file = await DocumentPicker.getDocumentAsync({
       multiple: false,
       copyToCacheDirectory: false,
@@ -118,8 +133,8 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
         <View
           style={{
             height: 70,
-            borderWidth: 1,
-            borderColor: 'red',
+            // borderWidth: 1,
+            // borderColor: 'red',
             marginBottom: 20,
           }}
         >
@@ -137,17 +152,20 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
             justifyContent: 'space-around',
           }}
         >
-          <View
+          <TouchableOpacity
             style={{
               backgroundColor: COLORS.PRIMARY_BLUE_ACCENT,
               display: 'flex',
               height: 48,
               width: 48,
+              alignItems: 'center',
+              justifyContent: 'center',
               borderRadius: 24,
             }}
+            onPress={() => togglePlaying()}
           >
-            <Icon name="Play" fill={COLORS.WHITE} />
-          </View>
+            <Icon name={playing ? 'Pause' : 'Play'} fill={COLORS.WHITE} />
+          </TouchableOpacity>
           <Button
             buttonTheme="primary"
             title="Add Sound"
@@ -157,7 +175,7 @@ export default function AddSoundPanel({ closeAddSoundOverlay }: Properties) {
         </View>
       </View>
     );
-  }, [darkMode, closeAddSoundOverlay, songTitle]);
+  }, [darkMode, closeAddSoundOverlay, songTitle, playing]);
 
   return (
     <View
