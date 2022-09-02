@@ -65,7 +65,7 @@ export const styles = {
         alignItems: 'center',
       },
       loginBoxContainer: {
-        height: '70%',
+        height: '40%',
         width: '90%',
         marginTop: 49,
         borderRadius: 20,

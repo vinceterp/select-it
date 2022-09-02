@@ -20,7 +20,7 @@ export default function LoginBox({ navigation }: Properties) {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const { userData, setUserData } = useBareAuth();
+  const { userData, setUserData, loginWithGoogle } = useBareAuth();
 
   const handleUsername = (newText: string) => {
     setUsername(newText);
@@ -34,7 +34,7 @@ export default function LoginBox({ navigation }: Properties) {
 
   return (
     <View style={styles.app({ darkMode }).loginBoxContainer}>
-      <Input
+      {/* <Input
         value={username}
         placeholder="Username"
         onChangeText={handleUsername}
@@ -68,7 +68,7 @@ export default function LoginBox({ navigation }: Properties) {
         >
           or
         </Text>
-      </View>
+      </View> */}
       <Button
         icon={
           <Image
@@ -78,7 +78,7 @@ export default function LoginBox({ navigation }: Properties) {
         }
         buttonTheme="sso-button"
         title="Continue with Google"
-        onPress={() => setFimiToken('google')}
+        onPress={() => loginWithGoogle()}
       />
       <Button
         icon={
