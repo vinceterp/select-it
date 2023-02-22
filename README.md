@@ -1,6 +1,6 @@
 # select-it
 
-This is the repository where the code for the SelectIt App will be
+A mobile application for iOS and Android with Google login using React Native
 
 #
 
